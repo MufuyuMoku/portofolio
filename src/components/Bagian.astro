@@ -1,0 +1,23 @@
+---
+// Satu bagian halaman: label mono kecil dan redup di atas, lalu isi.
+interface Props {
+  label: string;
+  garis?: boolean; // garis pemisah tipis di atas bagian
+}
+const { label, garis = true } = Astro.props;
+---
+
+<section class:list={['bagian', { 'bagian--garis': garis }]}>
+  <p class="label bagian__label">{label}</p>
+  <slot />
+</section>
+
+<style>
+  .bagian { margin-top: 3.5rem; }
+  .bagian--garis { border-top: 1px solid var(--line-soft); padding-top: 1.75rem; }
+  .bagian__label { margin-bottom: 1.25rem; }
+
+  @media (max-width: 60rem) {
+    .bagian { margin-top: 2.5rem; }
+  }
+</style>

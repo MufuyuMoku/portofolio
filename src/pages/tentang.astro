@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Bagian from '../components/Bagian.astro';
+import { getEntry, render } from 'astro:content';
+import situs from '../data/situs.json';
+
+const tentang = await getEntry('halaman', 'tentang')!;
+const { Content } = await render(tentang);
+---
+
+<Base judul="TENTANG" deskripsi="Cara kerja, alat, dan kontak.">
+  <header class="kepala">
+    <p class="label">{tentang.data.kicau}</p>
+    <h1>{tentang.data.judul}</h1>
+  </header>
+
+  <Bagian label="Catatan">
+    <article class="prose">
+      <Content />
+    </article>
+  </Bagian>
+
+  <Bagian label="Kontak">
+    <div class="panel panel--bl kontak">
+      <dl class="data">
+        <dt>Surel</dt>
+        <dd><a class="tautan" href={`mailto:${situs.email}`}>{situs.email}</a></dd>
+        <dt>GitHub</dt>
+        <dd><a class="tautan" href={situs.githubUrl} rel="me noopener">{situs.github}</a></dd>
+      </dl>
+    </div>
+  </Bagian>
+</Base>
+
+<style>
+  .kepala h1 { margin: 1rem 0 0; }
+  .kontak { max-width: 34rem; }
+  .tautan { border-bottom: 1px solid var(--line); transition: border-color 0.18s linear; }
+  .tautan:hover, .tautan:focus-visible { border-bottom-color: var(--accent); }
+</style>

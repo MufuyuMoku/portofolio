@@ -1,0 +1,136 @@
+---
+import Base from '../../layouts/Base.astro';
+import Bagian from '../../components/Bagian.astro';
+import Spek from '../../components/Spek.astro';
+import Tangkapan from '../../components/Tangkapan.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { u } from '../../lib/url';
+
+export async function getStaticPaths() {
+  const urut = (await getCollection('karya')).sort((a, b) => a.data.urutan - b.data.urutan);
+  return urut.map((entri, i) => ({
+    params: { slug: entri.id },
+    props: { entri, berikut: urut[(i + 1) % urut.length] },
+  }));
+}
+
+interface Props {
+  entri: CollectionEntry<'karya'>;
+  berikut: CollectionEntry<'karya'>;
+}
+
+const { entri, berikut } = Astro.props;
+const d = entri.data;
+const { Content } = await render(entri);
+const kerja = d.kategori === 'pengalaman';
+const jenis = kerja ? 'Penempatan kerja' : 'Aplikasi desktop';
+---
+
+<Base judul={d.judul.toUpperCase()} deskripsi={d.ringkas}>
+  <header class="kepala">
+    <p class="label">{d.kode} — {jenis}</p>
+    <h1>{d.judul}</h1>
+    <p class="kepala__ringkas measure">{d.ringkas}</p>
+    <p class:list={['status', `status--${d.keadaan}`, 'kepala__status']}>{d.status}</p>
+    {d.catatan && <p class="kepala__catatan measure">{d.catatan}</p>}
+  </header>
+
+  <Bagian label={kerja ? 'Data penempatan' : 'Data karya'}>
+    <div class:list={['panel', 'panel--bl', 'meta', { 'panel--inset': kerja }]}>
+      <dl class="data">
+        {d.perusahaan && <Fragment><dt>Perusahaan</dt><dd>{d.perusahaan}</dd></Fragment>}
+        {d.lokasi && <Fragment><dt>Lokasi</dt><dd>{d.lokasi}</dd></Fragment>}
+        <dt>{kerja ? 'Posisi' : 'Peran'}</dt><dd>{d.peran}</dd>
+        <dt>Periode</dt><dd>{d.periode}</dd>
+        {d.platform && <Fragment><dt>Platform</dt><dd>{d.platform}</dd></Fragment>}
+        {d.tumpukan.length > 0 && (
+          <Fragment>
+            <dt>Tumpukan</dt>
+            <dd class="meta__tumpukan">{d.tumpukan.join('  ·  ')}</dd>
+          </Fragment>
+        )}
+        {d.tautan.map((t) => (
+          <Fragment>
+            <dt>{t.label}</dt>
+            <dd><a class="tautan" href={t.href} rel="noopener">{t.href.replace(/^https?:\/\//, '')}</a></dd>
+          </Fragment>
+        ))}
+      </dl>
+    </div>
+  </Bagian>
+
+  {d.spek.length > 0 && (
+    <Bagian label="Angka">
+      <Spek spek={d.spek} />
+    </Bagian>
+  )}
+
+  {d.tangkapan.length > 0 && (
+    <Bagian label="Tangkapan layar">
+      <div class="tangkapan-daftar">
+        {d.tangkapan.map((t, i) => (
+          <Tangkapan src={t.src} alt={t.alt} keterangan={t.keterangan} indeks={i + 1} />
+        ))}
+      </div>
+    </Bagian>
+  )}
+
+  <Bagian label={kerja ? 'Catatan penempatan' : 'Catatan teknis'}>
+    <article class="prose">
+      <Content />
+    </article>
+  </Bagian>
+
+  {berikut.id !== entri.id && (
+    <nav class="lanjut" aria-label="Karya berikutnya">
+      <a class="lanjut__tautan" href={u(`/karya/${berikut.id}`)}>
+        <span class="label">Berikutnya — {berikut.data.kode}</span>
+        <span class="lanjut__judul">{berikut.data.judul}</span>
+      </a>
+    </nav>
+  )}
+</Base>
+
+<style>
+  .kepala h1 { margin: 1rem 0 0; }
+  .kepala__ringkas {
+    margin: 1.5rem 0 0;
+    color: var(--fg-dim);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .kepala__status { margin-top: 1.5rem; }
+  .kepala__catatan {
+    margin: 0.9rem 0 0;
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: var(--fg-faint);
+  }
+
+  .meta { max-width: 44rem; }
+  .meta__tumpukan { font-family: var(--font-mono); font-size: 0.8125rem; }
+  .tautan { border-bottom: 1px solid var(--line); transition: border-color 0.18s linear; }
+  .tautan:hover, .tautan:focus-visible { border-bottom-color: var(--accent); }
+
+  .tangkapan-daftar { max-width: 46rem; }
+
+  .lanjut { margin-top: 5rem; }
+  .lanjut__tautan {
+    display: block;
+    border-top: 1px solid var(--line-soft);
+    padding-top: 1.5rem;
+    transition: border-color 0.18s linear;
+  }
+  .lanjut__tautan:hover,
+  .lanjut__tautan:focus-visible { border-top-color: var(--accent); }
+  .lanjut__judul {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+</style>

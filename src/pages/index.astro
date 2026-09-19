@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import Bagian from '../components/Bagian.astro';
+import Baris from '../components/Baris.astro';
+import { getEntry, getCollection, render } from 'astro:content';
+import situs from '../data/situs.json';
+
+const beranda = await getEntry('halaman', 'beranda')!;
+const { Content } = await render(beranda);
+
+const semua = (await getCollection('karya')).sort((a, b) => a.data.urutan - b.data.urutan);
+const proyek = semua.filter((k) => k.data.kategori === 'proyek');
+const kerja = semua.filter((k) => k.data.kategori === 'pengalaman');
+---
+
+<Base judul="" deskripsi={beranda.data.judul}>
+  <header class="kepala">
+    <p class="label">{beranda.data.kicau}</p>
+    <h1>{beranda.data.judul}</h1>
+    <div class="prose kepala__teks">
+      <Content />
+    </div>
+  </header>
+
+  {proyek.length > 0 && (
+    <Bagian label="Karya — aplikasi desktop">
+      <div class="daftar">
+        {proyek.map((k) => (
+          <Baris
+            kode={k.data.kode}
+            judul={k.data.judul}
+            ringkas={k.data.ringkas}
+            status={k.data.status}
+            keadaan={k.data.keadaan}
+            periode={k.data.periode}
+            slug={k.id}
+          />
+        ))}
+      </div>
+    </Bagian>
+  )}
+
+  {kerja.length > 0 && (
+    <Bagian label="Pengalaman kerja — praktik industri">
+      <div class="daftar">
+        {kerja.map((k) => (
+          <Baris
+            kode={k.data.kode}
+            judul={k.data.judul}
+            ringkas={k.data.ringkas}
+            status={k.data.status}
+            keadaan={k.data.keadaan}
+            periode={k.data.periode}
+            slug={k.id}
+          />
+        ))}
+      </div>
+    </Bagian>
+  )}
+
+  <Bagian label="Kontak">
+    <div class="panel panel--bl kontak">
+      <dl class="data">
+        <dt>Surel</dt>
+        <dd><a class="tautan" href={`mailto:${situs.email}`}>{situs.email}</a></dd>
+        <dt>GitHub</dt>
+        <dd><a class="tautan" href={situs.githubUrl} rel="me noopener">{situs.github}</a></dd>
+      </dl>
+    </div>
+  </Bagian>
+</Base>
+
+<style>
+  .kepala h1 { margin: 1rem 0 0; max-width: 20ch; }
+  .kepala__teks { margin-top: 2rem; }
+
+  .daftar { border-bottom: 0; }
+
+  .kontak { max-width: 34rem; }
+  .tautan { border-bottom: 1px solid var(--line); transition: border-color 0.18s linear; }
+  .tautan:hover, .tautan:focus-visible { border-bottom-color: var(--accent); }
+</style>

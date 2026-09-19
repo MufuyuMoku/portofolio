@@ -1,0 +1,115 @@
+---
+import { getCollection } from 'astro:content';
+import { u, aktif } from '../lib/url';
+
+const karya = (await getCollection('karya')).sort((a, b) => a.data.urutan - b.data.urutan);
+const here = Astro.url.pathname;
+
+const nav = [
+  { kode: '00', label: 'Beranda', href: u('/') },
+  ...karya.map((k) => ({ kode: k.data.kode, label: k.data.judul, href: u(`/karya/${k.id}`) })),
+  { kode: '—', label: 'Tentang', href: u('/tentang') },
+];
+---
+
+<aside class="rail">
+  <div class="rail__atas">
+    <a class="rail__mark" href={u('/')}>Mufuyu</a>
+    <p class="label rail__sub">Siswa RPL · Desktop</p>
+  </div>
+
+  <nav class="nav" aria-label="Navigasi utama">
+    <ul>
+      {nav.map((item) => (
+        <li>
+          <a href={item.href} class:list={['nav__item', { 'is-aktif': aktif(here, item.href) }]}
+             aria-current={aktif(here, item.href) ? 'page' : undefined}>
+            <span class="nav__kode">{item.kode}</span>
+            <span class="nav__teks">{item.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <div class="rail__kaki">
+    <hr class="rule rule--tight" />
+    <p class="status">Buka untuk kerja</p>
+    <p class="label rail__tahun">MMXXVI</p>
+  </div>
+</aside>
+
+<style>
+  .rail__mark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 1.125rem;
+    color: var(--fg);
+    display: block;
+  }
+  .rail__sub { margin-top: 0.4rem; }
+
+  .nav { margin-top: -0.5rem; }
+  .nav ul { list-style: none; margin: 0; padding: 0; }
+  .nav li + li { margin-top: 0.15rem; }
+
+  .nav__item {
+    display: grid;
+    grid-template-columns: 2.25rem 1fr;
+    align-items: baseline;
+    gap: 0.25rem;
+    padding: 0.4rem 0 0.4rem 0.6rem;
+    border-left: 1px solid transparent;
+    transition: border-color 0.18s linear;
+  }
+  .nav__item:hover,
+  .nav__item:focus-visible { border-left-color: var(--accent); }
+  .nav__item.is-aktif { border-left-color: var(--accent); }
+
+  .nav__kode {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--fg-faint);
+  }
+  .nav__teks {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.9375rem;
+    color: var(--fg-dim);
+  }
+  .nav__item.is-aktif .nav__teks { color: var(--fg); }
+
+  .rail__kaki { margin-top: auto; }
+  .rail__tahun { margin-top: 0.5rem; }
+
+  @media (max-width: 60rem) {
+    .rail__atas { display: flex; align-items: baseline; gap: 0.75rem; }
+    .rail__sub { margin-top: 0; }
+    .nav { margin-top: 0; width: 100%; }
+    .nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 1.25rem;
+      border-top: 1px solid var(--line-soft);
+      padding-top: 0.6rem;
+    }
+    .nav li + li { margin-top: 0; }
+    .nav__item {
+      grid-template-columns: auto auto;
+      gap: 0.4rem;
+      padding: 0.25rem 0 0.35rem;
+      border-left: 0;
+      border-bottom: 1px solid transparent;
+    }
+    .nav__item:hover,
+    .nav__item:focus-visible,
+    .nav__item.is-aktif { border-left-color: transparent; border-bottom-color: var(--accent); }
+    .nav__teks { font-size: 0.875rem; }
+    .rail__kaki { display: none; }
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import Rail from '../components/Rail.astro';
+import { u } from '../lib/url';
+
+interface Props {
+  judul: string;
+  deskripsi?: string;
+}
+
+const { judul, deskripsi = 'Portofolio Mufuyu — siswa SMK RPL, membangun aplikasi desktop dari spesifikasi tertulis.' } = Astro.props;
+const tajuk = judul ? `${judul} / MUFUYU` : 'MUFUYU';
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={deskripsi} />
+    <meta name="theme-color" content="#0d0d0f" />
+    <meta name="color-scheme" content="dark" />
+    <title>{tajuk}</title>
+    <link rel="icon" type="image/svg+xml" href={u('/favicon.svg')} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={u('/fonts/barlow-condensed-600.woff2')} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={u('/fonts/ibm-plex-mono-400.woff2')} />
+    <style is:inline set:html={`
+      @font-face{font-family:'Barlow Condensed';src:url('${u('/fonts/barlow-condensed-500.woff2')}') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+      @font-face{font-family:'Barlow Condensed';src:url('${u('/fonts/barlow-condensed-600.woff2')}') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+      @font-face{font-family:'IBM Plex Mono';src:url('${u('/fonts/ibm-plex-mono-400.woff2')}') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+      @font-face{font-family:'IBM Plex Mono';src:url('${u('/fonts/ibm-plex-mono-500.woff2')}') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+    `} />
+  </head>
+
+  <body>
+    <div class="shell">
+      <Rail />
+      <main class="main" id="isi">
+        <div class="sweep" aria-hidden="true"></div>
+        <div class="col">
+          <slot />
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+  .sweep {
+    margin-bottom: 3.25rem;
+  }
+  @media (max-width: 60rem) {
+    .sweep { margin-bottom: 2rem; }
+  }
+</style>

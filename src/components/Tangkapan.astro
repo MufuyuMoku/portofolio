@@ -1,0 +1,76 @@
+---
+import { existsSync } from 'node:fs';
+import { u } from '../lib/url';
+
+// Bingkai tangkapan layar. Berkas gambar ditaruh di public/img/...
+// Kalau berkasnya belum ada, yang tampil bingkai kosong berisi alamat
+// yang ditunggu — jadi tata letaknya tetap terlihat benar.
+interface Props {
+  src: string;
+  alt: string;
+  keterangan?: string;
+  indeks?: number;
+}
+const { src, alt, keterangan, indeks } = Astro.props;
+const ada = existsSync(new URL(`../../public${src.startsWith('/') ? src : `/${src}`}`, import.meta.url));
+const nomor = indeks === undefined ? null : String(indeks).padStart(2, '0');
+---
+
+<figure class="tangkapan">
+  <div class="panel panel--flush panel--inset tangkapan__bingkai">
+    {ada
+      ? <img src={u(src)} alt={alt} loading="lazy" decoding="async" />
+      : (
+        <div class="tangkapan__kosong">
+          <p class="label">Slot gambar kosong</p>
+          <p class="tangkapan__jalur">public{src}</p>
+        </div>
+      )}
+  </div>
+  {(keterangan || nomor) && (
+    <figcaption class="tangkapan__ket">
+      {nomor && <span class="tangkapan__nomor">{nomor}</span>}
+      <span>{keterangan ?? alt}</span>
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .tangkapan { margin: 0 0 2.25rem; }
+  .tangkapan__bingkai { overflow: hidden; }
+  .tangkapan__bingkai img { width: 100%; height: auto; }
+
+  .tangkapan__kosong {
+    aspect-ratio: 16 / 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0 11px,
+        var(--line-soft) 11px 12px
+      );
+  }
+  .tangkapan__jalur {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--fg-faint);
+    margin: 0;
+  }
+
+  .tangkapan__ket {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--fg-faint);
+  }
+  .tangkapan__nomor { color: var(--accent); flex: none; }
+</style>

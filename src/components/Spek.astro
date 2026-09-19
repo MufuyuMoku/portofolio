@@ -1,0 +1,28 @@
+---
+// Deretan angka: hasil uji, ukuran, waktu. Diisi dari kolom `spek`
+// di berkas konten.
+interface Props {
+  spek: { label: string; nilai: string; catatan?: string }[];
+}
+const { spek } = Astro.props;
+---
+
+{spek.length > 0 && (
+  <div class="panel panel--flush panel--inset">
+    <div class="figures">
+      {spek.map((s) => (
+        <div class="figure">
+          <span class="figure__nilai">{s.nilai}</span>
+          <p class="label figure__label">{s.label}</p>
+          {s.catatan && <p class="figure__catatan">{s.catatan}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  /* Buang garis kanan pada kolom terakhir tiap baris tanpa menebak jumlah
+     kolom: bingkai panel sudah menutupnya. */
+  .figures { margin-right: -1px; margin-bottom: -1px; }
+</style>
