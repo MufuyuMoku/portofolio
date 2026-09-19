@@ -57,11 +57,8 @@ cacat (NG), dan mengirim LWP. Level manajerial mendapat dashboard grafik.
 
 Dua masalah muncul setelah sistem benar-benar dipakai, bukan saat dikembangkan.
 
-**Token yang kedaluwarsa membuat sistem berhenti mengenali operator di tengah
-shift.** Ini bukan kegagalan yang terlihat sebagai kegagalan: token JWT yang
-habis masa berlakunya membuat permintaan berikutnya ditolak, sementara
-antarmuka tetap terbuka seperti biasa — operator sedang di tengah shift, di
-depan mesin, dan tidak punya cara tahu bahwa yang dia kirim tidak diterima.
+**Token JWT yang kedaluwarsa membuat sistem tiba-tiba tidak mengenali operator
+di tengah shift.**
 
 Diselesaikan dengan *global fetch interceptor*: satu tempat yang memeriksa
 setiap respons dari backend, menangkap 401, membersihkan memori lokal, dan
@@ -71,9 +68,8 @@ terlewat menanganinya.
 
 **Penyimpanan laporan harian bercampur dengan log parameter master.** Keduanya
 tersimpan lewat jalur kueri yang tidak terpisah tegas, dan percampuran itu
-menghasilkan data yang salah — bukan galat yang muncul di layar, melainkan
-angka yang terbaca wajar padahal bukan angka yang dimaksud. Kuerinya dirapikan
-sampai kedua hal itu terpisah tegas.
+menghasilkan data yang salah. Kuerinya dirapikan sampai kedua hal itu terpisah
+tegas.
 
 ## Hasil dan serah terima
 
