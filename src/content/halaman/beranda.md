@@ -12,5 +12,6 @@ yang menjaga aturannya tetap benar. Yang dinilai selesai adalah perilaku
 yang lulus uji, bukan tampilan yang sudah *jadi*.
 
 Tiga hal di bawah ini yang sedang dan pernah aku kerjakan — dua aplikasi
-desktop yang masih berjalan, dan satu sistem manajemen produksi pabrik yang
-aku kerjakan saat praktik kerja lapangan.
+desktop, satu sudah dirilis dan satu dihentikan setelah milestone keenamnya,
+dan satu sistem manajemen produksi pabrik yang aku kerjakan saat praktik kerja
+lapangan.

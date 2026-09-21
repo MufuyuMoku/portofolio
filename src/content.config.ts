@@ -12,7 +12,7 @@ const karya = defineCollection({
     urutan: z.number(),
     ringkas: z.string(),                    // satu baris untuk daftar di beranda
     status: z.string(),                     // mis. "Dalam pengembangan"
-    keadaan: z.enum(['aktif', 'selesai', 'arsip']).default('aktif'),
+    keadaan: z.enum(['aktif', 'selesai', 'dihentikan', 'arsip']).default('aktif'),
     periode: z.string(),
     peran: z.string(),
     platform: z.string().optional(),

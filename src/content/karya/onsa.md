@@ -2,14 +2,14 @@
 # ---------------------------------------------------------------------------
 # Isi halaman ini diambil dari repo github.com/MufuyuMoku/onsa:
 # README.md, docs/SPEC.md, docs/PROGRESS.md, docs/DECISIONS.md, dan CLAUDE.md.
-# Angka tes dihitung dari pohon sumber repo itu, per 2026-09-19.
+# Angka tes dihitung dari pohon sumber repo itu, pada tag v1.2.0.
 # ---------------------------------------------------------------------------
 judul: Onsa
 kode: "01"
 kategori: proyek
 urutan: 1
 ringkas: Pemutar musik desktop untuk orang yang menyimpan berkas musiknya sendiri. Strip di bawah jendela menunjukkan rantai yang benar-benar dilewati sinyal — format sumber, resample, ReplayGain, EQ, limiter, sampai backend output.
-status: v1.0.0 — dirilis
+status: v1.2.0 — dirilis
 keadaan: aktif
 periode: September 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, dan verifikasi tiap milestone; implementasi dengan Claude Code
@@ -23,19 +23,21 @@ tumpukan:
 
 spek:
   - label: Fungsi tes Rust
-    nilai: "342"
-    catatan: Dihitung dari penanda #[test] dan #[tokio::test] di seluruh pohon sumber, bukan dari laporan jalannya tes.
+    nilai: "347"
+    catatan: Dihitung pada tag v1.2.0 dari penanda #[test] dan #[tokio::test] di seluruh pohon sumber, bukan dari laporan jalannya tes.
   - label: Tes frontend
     nilai: "34"
     catatan: node --test, lima berkas di ui/src/lib.
   - label: Milestone selesai
     nilai: "10"
-    catatan: M0–M6, M7a, M10a, M8. M9 dilewati; M7b, M10b, M11, M12 masuk v1.1.
+    catatan: M0–M6, M7a, M10a, M8. M9 dilewati; M7b, M10b, M11, M12 belum masuk rilis mana pun.
   - label: Crate Rust
     nilai: "6"
     catatan: Ditambah lapisan aplikasi src-tauri dan antarmuka SvelteKit.
 
 tautan:
+  - label: Rilis
+    href: https://github.com/MufuyuMoku/onsa/releases/tag/v1.2.0
   - label: Repositori
     href: https://github.com/MufuyuMoku/onsa
 
@@ -66,6 +68,12 @@ ulang, playlist manual dan playlist pintar, rantai DSP yang terlihat, library
 dengan pencarian teks penuh, editor tag satuan dan massal, lirik dari tiga
 sumber, unduhan satu per satu lewat yt-dlp, enam tema bawaan, dan dua bahasa
 antarmuka.
+
+v1.2.0 punya berkas pemasang Windows yang bisa diunduh dari
+[halaman rilisnya](https://github.com/MufuyuMoku/onsa/releases/tag/v1.2.0):
+`Onsa_1.2.0_x64-setup.exe`, 11,58 MB. Berkas itu dibangun dan diunggah oleh
+CI, tidak melewati mesin siapa pun; sha256 berkas di halaman rilis sama dengan
+yang dibangun CI.
 
 ## Mesin audio terpisah total dari tampilan
 
@@ -182,19 +190,19 @@ sinus kontinu diputar berurutan lalu dibandingkan dengan sinus utuh, dan
 tidak boleh ada diskontinuitas. Respons biquad diperiksa di beberapa frekuensi
 uji dengan toleransi ±0,1 dB.
 
-Jumlah fungsi tes di pohon sumber, dihitung dari penanda `#[test]` dan
-`#[tokio::test]`:
+Jumlah fungsi tes di pohon sumber pada tag v1.2.0, dihitung dari penanda
+`#[test]` dan `#[tokio::test]`:
 
 | Bagian | Fungsi tes |
 | --- | --- |
-| `src-tauri` | 103 |
+| `src-tauri` | 108 |
 | `onsa-library` | 97 |
 | `onsa-audio` | 81 |
 | `onsa-lyrics` | 36 |
 | `onsa-downloader` | 23 |
 | `onsa-cli` | 2 |
 | `onsa-scrobble` | 0 — menunggu M9 |
-| **Rust, total** | **342** |
+| **Rust, total** | **347** |
 | Frontend (`node --test`) | 34 |
 
 Angka di atas adalah jumlah fungsi tes yang ada di sumber, bukan hasil satu
@@ -220,15 +228,25 @@ selesai.
 | M7a Metadata | Selesai 18 Sep |
 | M10a Pengambil binary dan yt-dlp | Selesai 18 Sep |
 | M8 Lirik dan editor tag satuan | Selesai 19 Sep |
-| **v1.0.0** | **Ditandai 19 Sep 2026 — `533a2b0`** |
-| M7b, M10b, M11, M12 | v1.1 |
+| **v1.0.0** — M0–M8 dan M10a | Ditandai 19 Sep 2026 — `533a2b0` |
+| **v1.0.1** — enam perbaikan dari sesi audit | Ditandai 19 Sep 2026 — `c21e923` |
+| **v1.1.0** — bantuan di dalam aplikasi | Ditandai 20 Sep 2026 — `4af6879` |
+| **v1.2.0** — paket tester, pemasang Windows dari CI | Ditandai 21 Sep 2026 — `26132f9` |
+| M7b, M10b, M11, M12 | Belum masuk rilis mana pun |
 | M9 Scrobble | Dilewati, belum bertanggal |
 
 Urutannya pernah diubah sekali: sesudah M7a yang dikerjakan adalah sebagian
 M10, lalu M8, dan M9 dilewati. Alasannya beserta utang yang timbul dicatat.
-Sesudah M8 tidak ada fitur baru yang masuk v1 — yang tersisa penyiapan rilis,
-dan v1.0.0 ditandai setelah biner rilis kedua sistem dijalankan dari keadaan
-benar-benar baru. Yang berjalan sekarang v1.1.
+Sesudah M8 tidak ada fitur baru yang masuk v1, dan v1.0.0 ditandai setelah
+biner rilis kedua sistem dijalankan dari keadaan benar-benar baru.
+
+Tiga rilis sesudahnya juga tanpa fitur baru. v1.0.1 memperbaiki enam temuan
+dari sesi audit. v1.1.0 menambahkan bantuan di dalam aplikasi, supaya orang
+yang baru pertama membuka Onsa bisa memakainya tanpa bertanya kepada
+pemiliknya. v1.2.0 menyiapkan paket untuk tester: tiap jalur internet
+dibuktikan sekali terhadap layanan sungguhan, dan berkas pemasang Windows kini
+dibangun CI — karena build di mesin pemilik ternyata ikut menanam kunci
+AcoustID pribadinya ke dalam biner.
 
 ## Batas yang diketahui
 

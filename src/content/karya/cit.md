@@ -10,8 +10,8 @@ kode: "02"
 kategori: proyek
 urutan: 2
 ringkas: Pelacak versi berkas desain. Mengawasi folder kerja dan mencatat tiap kali sebuah berkas disimpan, lalu menyusunnya jadi linimasa. Tanpa server, tanpa akun, tanpa internet.
-status: Dalam pengembangan — tag terakhir m6
-keadaan: aktif
+status: Dihentikan setelah M6
+keadaan: dihentikan
 periode: 3 — 18 September 2026
 peran: Spesifikasi, keputusan lingkup, dan verifikasi tiap milestone; implementasi dengan Claude Code
 platform: Desktop — Windows dan Linux
@@ -54,6 +54,13 @@ seperti biasa, dan sistem yang menyesuaikan diri.
 
 Sasarannya siswa DKV, freelancer desain, dan studio kecil. Semuanya berjalan
 di komputer sendiri.
+
+## Kenapa dihentikan
+
+Sebelum melanjutkan ke retensi, aku bertanya ke siswa DKV — target penggunanya —
+bagaimana mereka menyimpan dan melacak berkas desain. Mereka tidak merasakan
+masalah di atas. Membangun lebih jauh untuk masalah yang tidak dirasakan
+penggunanya bukan keputusan yang benar, jadi pengembangannya berhenti setelah M6.
 
 ## Aturan emas
 
