@@ -31,9 +31,9 @@ spek:
   - label: Versi skema
     nilai: "9"
     catatan: Sembilan migrasi berversi di internal/store.
-  - label: Paket masih kosong
+  - label: Paket tidak dibangun
     nilai: "2"
-    catatan: internal/retention dan internal/sync — baru berisi doc.go.
+    catatan: internal/retention dan internal/sync — hanya berisi doc.go.
 
 tautan:
   - label: Repositori
@@ -66,7 +66,8 @@ penggunanya bukan keputusan yang benar, jadi pengembangannya berhenti setelah M6
 
 > Sistem mengamati dan mengusulkan. Manusia memutuskan.
 
-Satu kalimat itu yang dipakai menjawab keputusan desain yang belum tertulis:
+Satu kalimat itu yang dipakai menjawab keputusan desain yang tidak tertulis
+di spesifikasi:
 
 - Yang **bisa dibatalkan** dikerjakan langsung tanpa bertanya, asal terlihat
   dan mudah dibatalkan.
@@ -140,13 +141,13 @@ Jumlah fungsi tes per paket, dihitung dari pohon sumber:
 | `internal/ingest` | pemindai dan pengawas folder | 30 |
 | `cmd` | lapis aplikasi Wails | 18 |
 | `internal/ticket` | tiket dan kotak tinjauan | 7 |
-| `internal/retention` | belum dibangun | 0 |
-| `internal/sync` | belum dibangun | 0 |
+| `internal/retention` | tidak dibangun | 0 |
+| `internal/sync` | tidak dibangun | 0 |
 | **Total** | | **249** |
 
-Untuk `internal/vault` dan `internal/retention` aturannya tes ditulis sebelum
-implementasi, karena kedua paket itu bisa menghancurkan data pengguna; paket
-lain tidak.
+Untuk `internal/vault` aturannya tes ditulis sebelum implementasi, karena paket
+itu bisa menghancurkan data pengguna. Aturan yang sama ditetapkan untuk
+`internal/retention`, yang akhirnya tidak dibangun.
 
 Yang lebih menentukan daripada jumlahnya adalah cara bug-nya ketahuan. Tiap
 milestone punya satu devlog dengan bagian tetap: apa yang dibangun, keputusan
@@ -170,13 +171,14 @@ apa yang sengaja dilewatkan. Beberapa yang tercatat:
   menguji mekanisme yang diklaim, bukan lulus kebetulan.
 - **Migrasi belum pernah diuji terhadap basis data yang sudah berisi baris.**
   Ketahuan dari `grep`: nol rujukan ke kolom baru di berkas tes migrasi.
-  Sekarang tes migrasi berjalan dari setiap versi skema, bukan hanya dari
+  Sesudahnya tes migrasi berjalan dari setiap versi skema, bukan hanya dari
   basis data kosong.
 
 ## Status, apa adanya
 
-Tag terakhir `m6` — tiket dan kotak tinjauan. Skema basis data di versi 9.
-Seluruh `make test` hijau dengan `CGO_ENABLED=0`.
+Dihentikan setelah M6, dan repo-nya diarsip. Tag terakhir `m6` — tiket dan
+kotak tinjauan. Skema basis data di versi 9. Seluruh `make test` hijau dengan
+`CGO_ENABLED=0`.
 
 Yang sudah jadi dan terbukti jalan: brankas ber-alamat-isi dengan FastCDC dan
 refcount; katalog SQLite dengan sembilan migrasi; pemindai dan pengawas folder
@@ -184,21 +186,22 @@ dengan debouncing; pratinjau bertingkat; pengelompokan tiga sinyal dengan
 keputusan manual yang permanen; tiket dua arah dengan kotak tinjauan; dan
 aplikasi Wails yang merakit semuanya.
 
-Yang belum:
+Tidak dibangun:
 
 - **`internal/retention`** (penipisan riwayat dan pengumpulan sampah) dan
-  **`internal/sync`** (menyalin antar folder atau disk lepas) baru berisi
-  dokumentasi rancangan. Nol tes. Antarmuka sudah siap menampilkan versi yang
-  isinya dibuang, tapi belum ada yang membuangnya.
-- **Invarian "kebal pemangkasan" belum ditegakkan siapa pun** — wajar, karena
-  retensi belum ada. Ketiga masukannya sudah tersedia dan teruji.
-- **Frontend tidak tersentuh `make test`.** Satu-satunya pemeriksaan
-  otomatisnya `npm run check`, di luar target tes.
-- **`./cmd` hanya bisa diuji di Windows**, karena Wails memaksa CGO di Linux
-  dan macOS. Di luar Windows, 18 tes itu tidak pernah jalan.
-- **Pengelompokan masih O(n²).** Terukur ~860 ns per pasangan: 0,5 detik pada
-  1.000 berkas, sekitar 44 detik pada 10.000. Indeks token untuk memangkas
-  Levenshtein sengaja ditunda. Angka ini diukur, bukan diperkirakan.
+  **`internal/sync`** (menyalin antar folder atau disk lepas). Keduanya hanya
+  berisi dokumentasi rancangan, dengan nol tes. Antarmukanya bisa menampilkan
+  versi yang isinya dibuang, tapi tidak ada yang pernah membuangnya.
+- **Penegakan invarian "kebal pemangkasan"**, karena retensi tidak dibangun.
+  Ketiga masukannya — versi terbaru, versi bertanda manual, dan versi yang
+  punya tiket terbuka — ada dan teruji.
+- **Uji otomatis untuk frontend.** Satu-satunya pemeriksaan otomatisnya
+  `npm run check`, di luar `make test`.
+- **Pengujian `./cmd` di luar Windows.** Wails memaksa CGO di Linux dan macOS,
+  jadi 18 tes itu hanya pernah jalan di Windows.
+- **Indeks token untuk memangkas Levenshtein**, jadi pengelompokan tetap
+  O(n²). Terukur ~860 ns per pasangan: 0,5 detik pada 1.000 berkas, sekitar
+  44 detik pada 10.000. Angka ini diukur, bukan diperkirakan.
 
 ## Yang sengaja tidak dibangun
 
