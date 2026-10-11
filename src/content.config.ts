@@ -8,13 +8,17 @@ const karya = defineCollection({
   schema: z.object({
     judul: z.string(),
     kode: z.string(),                       // penanda pendek, mis. "01"
-    kategori: z.enum(['proyek', 'pengalaman']),
+    // Kelompok di beranda dan sidebar; urutannya di src/lib/kelompok.ts.
+    kelompok: z.enum(['dirilis', 'dikerjakan', 'rancangan', 'dihentikan', 'pengalaman']),
+    jenis: z.string().optional(),           // label di atas judul, mis. "Aplikasi desktop"
     urutan: z.number(),
     ringkas: z.string(),                    // satu baris untuk daftar di beranda
-    status: z.string(),                     // mis. "Dalam pengembangan"
-    keadaan: z.enum(['aktif', 'selesai', 'dihentikan', 'arsip']).default('aktif'),
+    status: z.string(),                     // mis. "Dalam pengerjaan"
+    // Bentuk indikator status: penuh = dirilis/berjalan, separuh = dikerjakan,
+    // garis putus = rancangan, kosong = dihentikan/arsip.
+    keadaan: z.enum(['aktif', 'dikerjakan', 'rancangan', 'selesai', 'dihentikan', 'arsip']).default('aktif'),
     periode: z.string(),
-    peran: z.string(),
+    peran: z.string().optional(),
     platform: z.string().optional(),
     tumpukan: z.array(z.string()).default([]),
     // Dipakai halaman berkategori `pengalaman`.

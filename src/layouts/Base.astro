@@ -8,7 +8,7 @@ interface Props {
   deskripsi?: string;
 }
 
-const { judul, deskripsi = 'Portofolio Mufuyu — siswa SMK RPL, membangun aplikasi desktop dari spesifikasi tertulis.' } = Astro.props;
+const { judul, deskripsi = 'Portofolio Mufuyu — siswa SMK RPL, membangun alat sendiri dari spesifikasi tertulis: desktop, web, dan audio.' } = Astro.props;
 const tajuk = judul ? `${judul} / MUFUYU` : 'MUFUYU';
 ---
 
@@ -22,7 +22,7 @@ const tajuk = judul ? `${judul} / MUFUYU` : 'MUFUYU';
     <meta name="theme-color" content="#0d0d0f" />
     <meta name="color-scheme" content="dark" />
     <title>{tajuk}</title>
-    <link rel="icon" type="image/svg+xml" href={u('/favicon.svg')} />
+    <link rel="icon" type="image/svg+xml" href={u('/pyonkuro-chip.svg')} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={u('/fonts/barlow-condensed-600.woff2')} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={u('/fonts/ibm-plex-mono-400.woff2')} />
     <style is:inline set:html={`
@@ -40,6 +40,10 @@ const tajuk = judul ? `${judul} / MUFUYU` : 'MUFUYU';
         <div class="sweep" aria-hidden="true"></div>
         <div class="col">
           <slot />
+          <footer class="cap">
+            <img src={u('/pyonkuro-chip.svg')} width="18" height="18" alt="" />
+            <span>Pyonkuro</span>
+          </footer>
         </div>
       </main>
     </div>
@@ -50,7 +54,23 @@ const tajuk = judul ? `${judul} / MUFUYU` : 'MUFUYU';
   .sweep {
     margin-bottom: 3.25rem;
   }
+  /* Cap kecil studio. Emas hanya ada di chip; teksnya tetap redup. */
+  .cap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+  }
+  .cap img { flex: none; }
   @media (max-width: 60rem) {
     .sweep { margin-bottom: 2rem; }
+    .cap { margin-top: 3.5rem; }
   }
 </style>

@@ -1,15 +1,23 @@
 ---
 # ---------------------------------------------------------------------------
 # Isi halaman ini diambil dari repo github.com/MufuyuMoku/onsa:
-# README.md, docs/SPEC.md, docs/PROGRESS.md, docs/DECISIONS.md, dan CLAUDE.md.
-# Angka tes dihitung dari pohon sumber repo itu, pada tag v1.2.0.
+# README.md, docs/SPEC.md, docs/PROGRESS.md, docs/DECISIONS.md, CLAUDE.md, dan
+# catatan rilis v1.4.0 di GitHub. Angka tes dihitung dari pohon sumber repo itu,
+# pada tag v1.4.0, dengan cara yang sama seperti hitungan v1.2.0 sebelumnya
+# (cara itu diuji ulang: pada v1.2.0 tetap memberi 347 dan 34).
+# Repo sengaja tanpa lisensi (SPEC §16): jangan tulis "open source".
+#
+# M16: konsep enam tema baru disetujui Fata pada 10 Oktober 2026, di luar
+# repo (repo Onsa diperbarui terpisah); kunci nama dan watak tema sudah dibuka.
+# Urutan tetap v1.4.1 dulu, M16 sesudahnya. Jangan tulis M16 "sedang dikerjakan".
 # ---------------------------------------------------------------------------
 judul: Onsa
 kode: "01"
-kategori: proyek
+kelompok: dirilis
+jenis: Aplikasi desktop — audio
 urutan: 1
 ringkas: Pemutar musik desktop untuk orang yang menyimpan berkas musiknya sendiri. Strip di bawah jendela menunjukkan rantai yang benar-benar dilewati sinyal — format sumber, resample, ReplayGain, EQ, limiter, sampai backend output.
-status: v1.2.0 — dirilis
+status: v1.4.0 — dirilis
 keadaan: aktif
 periode: September 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, dan verifikasi tiap milestone; implementasi dengan Claude Code
@@ -23,22 +31,22 @@ tumpukan:
 
 spek:
   - label: Fungsi tes Rust
-    nilai: "347"
-    catatan: Dihitung pada tag v1.2.0 dari penanda #[test] dan #[tokio::test] di seluruh pohon sumber, bukan dari laporan jalannya tes.
+    nilai: "416"
+    catatan: Dihitung pada tag v1.4.0 dari penanda #[test] dan #[tokio::test] di seluruh pohon sumber, bukan dari laporan jalannya tes.
   - label: Tes frontend
-    nilai: "34"
-    catatan: node --test, lima berkas di ui/src/lib.
+    nilai: "49"
+    catatan: node --test, tujuh berkas di ui/src/lib.
   - label: Milestone selesai
-    nilai: "10"
-    catatan: M0–M6, M7a, M10a, M8. M9 dilewati; M7b, M10b, M11, M12 belum masuk rilis mana pun.
+    nilai: "13"
+    catatan: M0–M6, M7a, M8, M10a, M13, M14, M15. M10b sebagian (sisanya di v1.4.1), M9 dilewati.
   - label: Crate Rust
     nilai: "6"
     catatan: Ditambah lapisan aplikasi src-tauri dan antarmuka SvelteKit.
 
 tautan:
   - label: Rilis
-    href: https://github.com/MufuyuMoku/onsa/releases/tag/v1.2.0
-  - label: Repositori
+    href: https://github.com/MufuyuMoku/onsa/releases/tag/v1.4.0
+  - label: Kode di GitHub
     href: https://github.com/MufuyuMoku/onsa
 
 tangkapan:
@@ -63,17 +71,40 @@ dimatikan dari strip itu.
 Tidak ada yang menghubungi internet kecuali dinyalakan sendiri. Semua fitur
 jaringan mati secara bawaan.
 
-Yang ada di v1: pemutaran gapless dan crossfade, antrean yang bisa diurut
+Yang ada di v1.4.0: pemutaran gapless dan crossfade, antrean yang bisa diurut
 ulang, playlist manual dan playlist pintar, rantai DSP yang terlihat, library
-dengan pencarian teks penuh, editor tag satuan dan massal, lirik dari tiga
-sumber, unduhan satu per satu lewat yt-dlp, enam tema bawaan, dan dua bahasa
-antarmuka.
+dengan pencarian teks penuh dan folder sumber yang bisa dilepas atau
+dipindahkan, editor tag satuan dan massal, lirik dari tiga sumber, layar Sedang
+diputar yang panelnya bisa diatur, enam tema bawaan, bantuan di dalam
+aplikasi, dan dua bahasa antarmuka. Unduhan lewat yt-dlp kini berjalan
+beberapa sekaligus, dan program yang dibutuhkannya — yt-dlp, ffmpeg, Deno,
+fpcalc — diambil Onsa sendiri, hanya setelah disetujui dan sesudah cocok
+dengan checksum rilis resminya.
 
-v1.2.0 punya berkas pemasang Windows yang bisa diunduh dari
-[halaman rilisnya](https://github.com/MufuyuMoku/onsa/releases/tag/v1.2.0):
-`Onsa_1.2.0_x64-setup.exe`, 11,58 MB. Berkas itu dibangun dan diunggah oleh
-CI, tidak melewati mesin siapa pun; sha256 berkas di halaman rilis sama dengan
-yang dibangun CI.
+Berkas pemasangnya ada di
+[halaman rilis v1.4.0](https://github.com/MufuyuMoku/onsa/releases/tag/v1.4.0),
+dibangun dan diunggah CI: `Onsa_1.4.0_x64-setup.exe` (11,79 MB) untuk
+Windows, serta `.deb` (18,93 MB) dan AppImage (89,92 MB) untuk Linux — paket
+Linux pertama Onsa. Paket Linux baru dicoba di WSL, belum di mesin Linux
+sungguhan.
+
+Kode Onsa bisa dilihat di
+[GitHub](https://github.com/MufuyuMoku/onsa). Repo-nya sengaja belum
+berlisensi; keputusan lisensi ditahan sampai nanti.
+
+## Berikutnya
+
+**v1.4.1** menutup sisa M10b: antrean unduhan yang tetap ada sesudah Onsa
+ditutup, dan folder hasil unduhan yang bisa dipilih. Kodenya sudah masuk repo,
+tapi rilisnya belum ditandai.
+
+Lalu **M16** (v1.5 "Tampilan"): perombakan total enam tema bawaan, masing-masing
+dengan layout sendiri. Tema pembukanya bertema kokpit pesawat analog vintage.
+Konsep keenam tema sudah disetujui; skema temanya diperluas di luar warna —
+huruf, material permukaan, bingkai, gaya meter dan visualizer, dan animasi.
+
+Tangkapan layar di halaman ini masih tampilan lama; diganti setelah M16
+dirilis.
 
 ## Mesin audio terpisah total dari tampilan
 
@@ -190,20 +221,20 @@ sinus kontinu diputar berurutan lalu dibandingkan dengan sinus utuh, dan
 tidak boleh ada diskontinuitas. Respons biquad diperiksa di beberapa frekuensi
 uji dengan toleransi ±0,1 dB.
 
-Jumlah fungsi tes di pohon sumber pada tag v1.2.0, dihitung dari penanda
+Jumlah fungsi tes di pohon sumber pada tag v1.4.0, dihitung dari penanda
 `#[test]` dan `#[tokio::test]`:
 
 | Bagian | Fungsi tes |
 | --- | --- |
-| `src-tauri` | 108 |
-| `onsa-library` | 97 |
-| `onsa-audio` | 81 |
+| `src-tauri` | 126 |
+| `onsa-library` | 112 |
+| `onsa-audio` | 82 |
+| `onsa-downloader` | 58 |
 | `onsa-lyrics` | 36 |
-| `onsa-downloader` | 23 |
 | `onsa-cli` | 2 |
 | `onsa-scrobble` | 0 — menunggu M9 |
-| **Rust, total** | **347** |
-| Frontend (`node --test`) | 34 |
+| **Rust, total** | **416** |
+| Frontend (`node --test`) | 49 |
 
 Angka di atas adalah jumlah fungsi tes yang ada di sumber, bukan hasil satu
 kali jalan. CI menjalankan `cargo fmt --check`, `cargo clippy -- -D warnings`,
@@ -232,7 +263,15 @@ selesai.
 | **v1.0.1** — enam perbaikan dari sesi audit | Ditandai 19 Sep 2026 — `c21e923` |
 | **v1.1.0** — bantuan di dalam aplikasi | Ditandai 20 Sep 2026 — `4af6879` |
 | **v1.2.0** — paket tester, pemasang Windows dari CI | Ditandai 21 Sep 2026 — `26132f9` |
-| M7b, M10b, M11, M12 | Belum masuk rilis mana pun |
+| M13 Pengelolaan folder sumber | Selesai 27 Sep |
+| M14 Panel Sedang diputar | Selesai 27 Sep |
+| **v1.3.0** "Rapi" — M13, M14, empat bug dari pengujian, warna nada di keenam tema | Ditandai 27 Sep 2026 — `d51afdd` |
+| M10b ffmpeg, Deno, fpcalc, unduhan paralel | Sebagian 29 Sep — sisanya di v1.4.1 |
+| M15 Daftar sumber unduhan di Bantuan | Selesai 29 Sep |
+| **v1.4.0** "Unduhan penuh" — M10b, M15, paket Linux dari CI | Ditandai 9 Okt 2026 — `27aefb8` |
+| v1.4.1 Sisa M10b | Dikerjakan, belum ditandai |
+| M16 Tampilan (v1.5) — enam tema baru, konsep disetujui 10 Okt | Berikutnya, sesudah v1.4.1 |
+| M17, M7b (v1.6) · M11, M18 (v1.7) | Direncanakan |
 | M9 Scrobble | Dilewati, belum bertanggal |
 
 Urutannya pernah diubah sekali: sesudah M7a yang dikerjakan adalah sebagian
@@ -248,21 +287,27 @@ dibuktikan sekali terhadap layanan sungguhan, dan berkas pemasang Windows kini
 dibangun CI — karena build di mesin pemilik ternyata ikut menanam kunci
 AcoustID pribadinya ke dalam biner.
 
+Fitur baru masuk lagi mulai v1.3.0 dan v1.4.0, keduanya mengikuti garis rilis
+yang diputuskan 25 September. Laporan tester tidak dijadikan gerbang rilis;
+yang datang masuk ke rilis patch berikutnya.
+
 ## Batas yang diketahui
 
-Ditulis apa adanya di README, bukan disembunyikan:
+Ditulis apa adanya di README dan catatan rilis, bukan disembunyikan. Yang
+berlaku untuk v1.4.0:
 
-- **ffmpeg opsional.** Tanpa ffmpeg unduhan tetap berjalan, tapi audionya
-  diambil apa adanya — tanpa tag dan sampul tertanam, dan konversi ke MP3
-  atau FLAC tidak tersedia. Halaman Unduhan mengatakan itu di tempat
-  pilihannya dibuat.
+- **ffmpeg dan Deno opsional.** Tanpa ffmpeg unduhan tetap berjalan, tapi
+  audionya diambil apa adanya — tanpa tag dan sampul tertanam, dan konversi ke
+  MP3 atau FLAC tidak tersedia. Tanpa Deno, sebagian format YouTube bisa tidak
+  tersedia. Halaman Unduhan mengatakan keduanya.
+- **Antrean unduhan belum disimpan.** Unduhan yang belum selesai hilang bila
+  Onsa ditutup, dan hasilnya selalu masuk `Unduhan` di folder library
+  pertama. Keduanya ditutup di v1.4.1.
 - **Sumber yang hanya menyediakan Opus ditolak** dengan pesan, karena belum
   ada decoder Opus. Lebih baik ditolak di muka daripada berkasnya mendarat
   lalu tidak pernah muncul di library.
-- **Folder library belum bisa dihapus** dari Pengaturan; yang ada baru
-  menambah dan memindai ulang.
 - **Belum ada scrobble Last.fm.**
+- **Linux baru dicoba di WSL**, belum di mesin Linux sungguhan.
 - Timing per kata sudah dibaca dan disimpan, tapi belum digambar per kata —
   barisnya yang menyala, bukan katanya.
-- Lisensi proyek dan ikon final belum diputuskan; keduanya dibutuhkan paling
-  lambat di M12.
+- Ikon final belum ada, dan lisensi proyek sengaja ditahan.

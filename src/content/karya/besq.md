@@ -4,9 +4,9 @@
 # Tidak ada apa pun di berkas ini tentang infrastruktur internal perusahaan.
 # ---------------------------------------------------------------------------
 judul: Besq Sarana Abadi
-kode: "03"
-kategori: pengalaman
-urutan: 3
+kode: "09"
+kelompok: pengalaman
+urutan: 9
 ringkas: Sistem informasi manajemen produksi pabrik, dikerjakan saat praktik kerja lapangan. Backend Go dengan Gin dan GORM, antarmuka SvelteKit, dan operator masuk dengan memindai QR di mesin.
 status: Praktik kerja lapangan
 keadaan: selesai

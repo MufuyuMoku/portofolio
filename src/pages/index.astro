@@ -4,13 +4,12 @@ import Bagian from '../components/Bagian.astro';
 import Baris from '../components/Baris.astro';
 import { getEntry, getCollection, render } from 'astro:content';
 import situs from '../data/situs.json';
+import { kelompokkan } from '../lib/kelompok';
 
 const beranda = await getEntry('halaman', 'beranda')!;
 const { Content } = await render(beranda);
 
-const semua = (await getCollection('karya')).sort((a, b) => a.data.urutan - b.data.urutan);
-const proyek = semua.filter((k) => k.data.kategori === 'proyek');
-const kerja = semua.filter((k) => k.data.kategori === 'pengalaman');
+const kelompok = kelompokkan(await getCollection('karya'));
 ---
 
 <Base judul="" deskripsi={beranda.data.judul}>
@@ -22,41 +21,23 @@ const kerja = semua.filter((k) => k.data.kategori === 'pengalaman');
     </div>
   </header>
 
-  {proyek.length > 0 && (
-    <Bagian label="Karya — aplikasi desktop">
+  {kelompok.map((k) => (
+    <Bagian label={k.label}>
       <div class="daftar">
-        {proyek.map((k) => (
+        {k.isi.map((e) => (
           <Baris
-            kode={k.data.kode}
-            judul={k.data.judul}
-            ringkas={k.data.ringkas}
-            status={k.data.status}
-            keadaan={k.data.keadaan}
-            periode={k.data.periode}
-            slug={k.id}
+            kode={e.data.kode}
+            judul={e.data.judul}
+            ringkas={e.data.ringkas}
+            status={e.data.status}
+            keadaan={e.data.keadaan}
+            periode={e.data.periode}
+            slug={e.id}
           />
         ))}
       </div>
     </Bagian>
-  )}
-
-  {kerja.length > 0 && (
-    <Bagian label="Pengalaman kerja — praktik industri">
-      <div class="daftar">
-        {kerja.map((k) => (
-          <Baris
-            kode={k.data.kode}
-            judul={k.data.judul}
-            ringkas={k.data.ringkas}
-            status={k.data.status}
-            keadaan={k.data.keadaan}
-            periode={k.data.periode}
-            slug={k.id}
-          />
-        ))}
-      </div>
-    </Bagian>
-  )}
+  ))}
 
   <Bagian label="Kontak">
     <div class="panel panel--bl kontak">
