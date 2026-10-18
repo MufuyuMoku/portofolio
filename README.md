@@ -29,13 +29,33 @@ Nama berkas jadi alamat halaman (`onsa.md` → `/karya/onsa`), dan karya itu
 otomatis muncul di sidebar dan di beranda. Urutannya diatur kolom `urutan`.
 
 Kolom `kelompok` menentukan di bagian mana karya itu tampil, di beranda
-maupun di sidebar: `dirilis`, `dikerjakan`, `rancangan`, `dihentikan`, atau
-`pengalaman` (kerja / PKL). Urutan kelompok ada di `src/lib/kelompok.ts`.
+maupun di sidebar. Isinya mengikuti sistem status proyek:
+
+- `ditampilkan`: sudah jadi, atau masih berjalan tapi sudah bisa dicoba orang.
+- `dimeja`: masih akan disentuh, yaitu sedang dikerjakan, menunggu sesuatu,
+  atau istirahat dulu.
+- `tulisan`: karya tulis dan desain.
+- `pengalaman`: kerja atau PKL.
+- `arsip`: tidak dilanjutkan.
+
+Keadaan rinci (dikerjakan, menunggu, istirahat) ditulis di awal kolom
+`status`, misalnya `Istirahat — M6a selesai`. Urutan kelompok ada di `src/lib/kelompok.ts`.
 Kolom `jenis` mengisi label kecil di atas judul (mis. "Aplikasi desktop").
 
-Kolom `keadaan` mengatur bentuk kotak status: `aktif` penuh (dirilis atau
-berjalan), `dikerjakan` separuh, `rancangan` berbingkai, `dihentikan` dan
-`arsip` kosong redup. Karya berkelompok `rancangan` tidak punya panel data.
+Kolom `keadaan` mengatur bentuk kotak status:
+
+| Nilai | Bentuk |
+| --- | --- |
+| `aktif` | penuh (dirilis atau berjalan) |
+| `dikerjakan` | separuh |
+| `menunggu` | separuh redup |
+| `istirahat`, `rancangan` | berbingkai |
+| `selesai` | abu-abu |
+| `dihentikan`, `arsip` | kosong redup |
+
+Panel data hanya tampil kalau karya punya salah satu kolom `peran`,
+`platform`, `perusahaan`, `tumpukan`, atau `tautan`. Untuk karya berkelompok
+`tulisan`, kolom `platform` tampil dengan label "Bentuk".
 
 Halaman berkelompok `pengalaman` tampil berbeda: labelnya "Penempatan kerja",
 panel datanya memakai kolom `perusahaan`, `lokasi`, dan `peran` sebagai

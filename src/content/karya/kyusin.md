@@ -10,12 +10,12 @@
 # ---------------------------------------------------------------------------
 judul: KyuSin
 kode: "04"
-kelompok: dikerjakan
+kelompok: dimeja
 jenis: Aplikasi desktop — game · Project Sinners
 urutan: 4
 ringkas: Kumpulan game ringan — papan, kartu, dan casino — dalam satu wadah bergaya terminal retro dengan efek CRT samar. Dimainkan secara visual, dengan mode perintah teks sebagai opsi. Dua bahasa, tanpa akun dan tanpa internet.
-status: Dalam pengerjaan — M6a selesai
-keadaan: dikerjakan
+status: Istirahat — M6a selesai, lanjut sesudah Onsa
+keadaan: istirahat
 periode: September 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, dan verifikasi tiap milestone; implementasi dengan Claude Code
 platform: Desktop — Windows dan Linux (belum ada pemasang)

@@ -6,15 +6,16 @@
 # tidak tertulis di repo.
 # PRIVASI: jangan menulis alamat IP, port, domain, kode undangan, nama akun,
 # atau susunan jaringan apa pun di sini.
+# 18 Oktober 2026: rencana Landship/VTLS dilebur ke HOME dan Nor-4 (keputusan Fata).
 # ---------------------------------------------------------------------------
 judul: Project HOME
 kode: "05"
-kelompok: dikerjakan
+kelompok: dimeja
 jenis: Server rumahan — homelab
 urutan: 5
 ringkas: High Operative Management Environment — server mini pribadi di STB bekas berprosesor ARM. Empat layanan berjalan di Docker, backup harian terenkripsi sudah lulus uji pemulihan, dan semuanya bisa dibangun ulang dari isi repo.
-status: Dalam pengerjaan — Fase 0 dan 1 selesai
-keadaan: dikerjakan
+status: Istirahat — Fase 0 dan 1 selesai
+keadaan: istirahat
 periode: September 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, dan verifikasi tiap langkah; implementasi dengan Claude Code
 platform: STB Fiberhome HG680P — Armbian (arm64)
@@ -112,6 +113,13 @@ pemakaian lewat aturan tertulis.
 
 Setiap perubahan dicatat di log dengan tanggal, apa yang dilakukan, dan
 alasannya, termasuk yang gagal.
+
+## Dari Landship
+
+Landship dulu kurencanakan sebagai proyek sendiri: "markas" untuk semua
+karyaku, dengan sistem bernama VTLS — Vault Tracking & Log System — yang
+mencatat pekerjaan dan menyusun devlog secara otomatis. Rencana itu tidak
+lagi berdiri sendiri; idenya dilebur ke Project HOME dan Project Nor-4.
 
 ## Belum dikerjakan
 

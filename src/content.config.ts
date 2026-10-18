@@ -9,14 +9,15 @@ const karya = defineCollection({
     judul: z.string(),
     kode: z.string(),                       // penanda pendek, mis. "01"
     // Kelompok di beranda dan sidebar; urutannya di src/lib/kelompok.ts.
-    kelompok: z.enum(['dirilis', 'dikerjakan', 'rancangan', 'dihentikan', 'pengalaman']),
+    kelompok: z.enum(['ditampilkan', 'dimeja', 'tulisan', 'pengalaman', 'arsip']),
     jenis: z.string().optional(),           // label di atas judul, mis. "Aplikasi desktop"
     urutan: z.number(),
     ringkas: z.string(),                    // satu baris untuk daftar di beranda
     status: z.string(),                     // mis. "Dalam pengerjaan"
     // Bentuk indikator status: penuh = dirilis/berjalan, separuh = dikerjakan,
-    // garis putus = rancangan, kosong = dihentikan/arsip.
-    keadaan: z.enum(['aktif', 'dikerjakan', 'rancangan', 'selesai', 'dihentikan', 'arsip']).default('aktif'),
+    // separuh redup = menunggu, bingkai = istirahat/rancangan, abu = selesai,
+    // kosong = dihentikan/arsip.
+    keadaan: z.enum(['aktif', 'dikerjakan', 'menunggu', 'istirahat', 'rancangan', 'selesai', 'dihentikan', 'arsip']).default('aktif'),
     periode: z.string(),
     peran: z.string().optional(),
     platform: z.string().optional(),

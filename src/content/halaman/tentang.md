@@ -16,6 +16,9 @@ mesin audio Rust di Onsa, aturan game di KyuSin, mesin pencari yang berjalan
 di perangkat pada Saku Pajak. Itu sebabnya aku tidak menyebut diri *web &
 mobile developer*: pekerjaannya ada di sisi program, bukan di sisi halaman.
 
+Di luar kode aku juga menulis: naskah desain game, novel, cerpen, dan lirik
+lagu. Tulisan-tulisan itu punya bagian sendiri di beranda.
+
 Karya-karya ini dibuat di bawah **Pyonkuro**, studio dan bengkel pribadiku.
 
 ## Cara kerja

@@ -3,11 +3,11 @@ import type { CollectionEntry } from 'astro:content';
 // Urutan kelompok karya di beranda dan sidebar. `label` dipakai di beranda,
 // `pendek` di sidebar yang sempit.
 export const KELOMPOK = [
-  { id: 'dirilis',    label: 'Dirilis / berjalan',                  pendek: 'Dirilis' },
-  { id: 'dikerjakan', label: 'Sedang dikerjakan',                   pendek: 'Dikerjakan' },
-  { id: 'rancangan',  label: 'Dalam rancangan',                     pendek: 'Rancangan' },
-  { id: 'dihentikan', label: 'Dihentikan',                          pendek: 'Dihentikan' },
-  { id: 'pengalaman', label: 'Pengalaman kerja — praktik industri', pendek: 'Kerja' },
+  { id: 'ditampilkan', label: 'Ditampilkan — bisa dicoba sekarang',           pendek: 'Ditampilkan' },
+  { id: 'dimeja',      label: 'Di meja — dikerjakan, menunggu, atau istirahat', pendek: 'Di meja' },
+  { id: 'tulisan',     label: 'Karya tulis & desain',                          pendek: 'Tulis & desain' },
+  { id: 'pengalaman',  label: 'Pengalaman kerja — praktik industri',           pendek: 'Kerja' },
+  { id: 'arsip',       label: 'Arsip — tidak dilanjutkan',                     pendek: 'Arsip' },
 ] as const;
 
 type Karya = CollectionEntry<'karya'>;

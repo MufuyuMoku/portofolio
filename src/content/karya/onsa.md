@@ -13,11 +13,11 @@
 # ---------------------------------------------------------------------------
 judul: Onsa
 kode: "01"
-kelompok: dirilis
+kelompok: ditampilkan
 jenis: Aplikasi desktop — audio
 urutan: 1
 ringkas: Pemutar musik desktop untuk orang yang menyimpan berkas musiknya sendiri. Strip di bawah jendela menunjukkan rantai yang benar-benar dilewati sinyal — format sumber, resample, ReplayGain, EQ, limiter, sampai backend output.
-status: v1.4.0 — dirilis
+status: v1.4.0 — dirilis · pembaruan sedang dikerjakan
 keadaan: aktif
 periode: September 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, dan verifikasi tiap milestone; implementasi dengan Claude Code

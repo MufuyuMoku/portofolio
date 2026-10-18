@@ -23,8 +23,10 @@ const { entri, berikut } = Astro.props;
 const d = entri.data;
 const { Content } = await render(entri);
 const kerja = d.kelompok === 'pengalaman';
-// Karya yang masih rancangan belum punya data (tumpukan, platform, tautan).
-const rancangan = d.kelompok === 'rancangan';
+const tulisan = d.kelompok === 'tulisan';
+// Karya yang masih rancangan belum punya data (tumpukan, platform, tautan),
+// jadi panel datanya tidak ditampilkan.
+const adaData = Boolean(d.peran || d.platform || d.perusahaan || d.tumpukan.length || d.tautan.length);
 const jenis = d.jenis ?? (kerja ? 'Penempatan kerja' : 'Karya');
 ---
 
@@ -37,14 +39,14 @@ const jenis = d.jenis ?? (kerja ? 'Penempatan kerja' : 'Karya');
     {d.catatan && <p class="kepala__catatan measure">{d.catatan}</p>}
   </header>
 
-  {!rancangan && <Bagian label={kerja ? 'Data penempatan' : 'Data karya'}>
+  {adaData && <Bagian label={kerja ? 'Data penempatan' : 'Data karya'}>
     <div class:list={['panel', 'panel--bl', 'meta', { 'panel--inset': kerja }]}>
       <dl class="data">
         {d.perusahaan && <Fragment><dt>Perusahaan</dt><dd>{d.perusahaan}</dd></Fragment>}
         {d.lokasi && <Fragment><dt>Lokasi</dt><dd>{d.lokasi}</dd></Fragment>}
-        {d.peran && <Fragment><dt>{kerja ? 'Posisi' : 'Peran'}</dt><dd>{d.peran}</dd></Fragment>}
+        {d.peran && <Fragment><dt>{kerja ? 'Posisi' : tulisan ? 'Penulis' : 'Peran'}</dt><dd>{d.peran}</dd></Fragment>}
         <dt>Periode</dt><dd>{d.periode}</dd>
-        {d.platform && <Fragment><dt>Platform</dt><dd>{d.platform}</dd></Fragment>}
+        {d.platform && <Fragment><dt>{tulisan ? 'Bentuk' : 'Platform'}</dt><dd>{d.platform}</dd></Fragment>}
         {d.tumpukan.length > 0 && (
           <Fragment>
             <dt>Tumpukan</dt>
@@ -77,7 +79,7 @@ const jenis = d.jenis ?? (kerja ? 'Penempatan kerja' : 'Karya');
     </Bagian>
   )}
 
-  <Bagian label={kerja ? 'Catatan penempatan' : 'Catatan teknis'}>
+  <Bagian label={kerja ? 'Catatan penempatan' : tulisan ? 'Catatan karya' : 'Catatan teknis'}>
     <article class="prose">
       <Content />
     </article>

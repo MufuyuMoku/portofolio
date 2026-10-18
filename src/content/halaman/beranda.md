@@ -13,7 +13,10 @@ yang sudah *jadi*.
 
 Yang aku bangun sekarang lebih dari aplikasi desktop: pemutar musik,
 pencari peraturan pajak yang jalan tanpa internet, pembuat voicebank,
-kumpulan game, dan server kecil di STB bekas. Di bawah ini semuanya
-dikelompokkan menurut keadaannya — dirilis, sedang dikerjakan, masih
-rancangan, atau dihentikan — ditambah satu penempatan kerja saat praktik
-kerja lapangan.
+kumpulan game, dan server kecil di STB bekas. Di luar kode, aku juga menulis:
+naskah desain game, novel, cerpen, dan lirik lagu.
+
+Di bawah ini semuanya dikelompokkan menurut keadaannya: yang sudah bisa
+dicoba, yang masih di meja (sedang dikerjakan, menunggu sesuatu, atau
+istirahat dulu), karya tulis, satu penempatan kerja saat praktik kerja
+lapangan, dan arsip yang tidak dilanjutkan.

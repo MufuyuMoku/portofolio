@@ -6,10 +6,10 @@
 # dan cocok dengan tabel di docs/STATUS.md. Tanpa tangkapan layar antarmuka.
 # ---------------------------------------------------------------------------
 judul: CIT
-kode: "08"
-kelompok: dihentikan
+kode: "12"
+kelompok: arsip
 jenis: Aplikasi desktop
-urutan: 8
+urutan: 12
 ringkas: Pelacak versi berkas desain. Mengawasi folder kerja dan mencatat tiap kali sebuah berkas disimpan, lalu menyusunnya jadi linimasa. Tanpa server, tanpa akun, tanpa internet.
 status: Dihentikan setelah M6
 keadaan: dihentikan

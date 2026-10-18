@@ -9,7 +9,7 @@
 # ---------------------------------------------------------------------------
 judul: Saku Pajak
 kode: "02"
-kelompok: dirilis
+kelompok: ditampilkan
 jenis: Situs web — bisa dipasang, jalan tanpa internet
 urutan: 2
 ringkas: Pencari peraturan pajak Indonesia. Situs statis yang bisa dipasang di HP dan dipakai tanpa internet; pencariannya berjalan di perangkat, tanpa server. Bukan situs resmi pemerintah.
