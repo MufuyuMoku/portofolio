@@ -2,18 +2,23 @@
 import '../styles/global.css';
 import Rail from '../components/Rail.astro';
 import { u } from '../lib/url';
+import { BAHASA, ul, jalurTanpaBahasa, type Bahasa } from '../lib/bahasa';
+import { UI } from '../lib/teks';
 
 interface Props {
+  bahasa: Bahasa;
   judul: string;
   deskripsi?: string;
 }
 
-const { judul, deskripsi = 'Portofolio Mufuyu — siswa SMK RPL, membangun alat sendiri dari spesifikasi tertulis: desktop, web, dan audio.' } = Astro.props;
+const { bahasa, judul, deskripsi = UI[bahasa].deskripsiSitus } = Astro.props;
+const jalur = jalurTanpaBahasa(Astro.url.pathname);
+const mutlak = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
 const tajuk = judul ? `${judul} / MUFUYU` : 'MUFUYU';
 ---
 
 <!doctype html>
-<html lang="id">
+<html lang={bahasa}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,6 +27,8 @@ const tajuk = judul ? `${judul} / MUFUYU` : 'MUFUYU';
     <meta name="theme-color" content="#0d0d0f" />
     <meta name="color-scheme" content="dark" />
     <title>{tajuk}</title>
+    {BAHASA.map((b) => <link rel="alternate" hreflang={b} href={mutlak(ul(b, jalur))} />)}
+    <link rel="alternate" hreflang="x-default" href={mutlak(ul('id', jalur))} />
     <link rel="icon" type="image/svg+xml" href={u('/pyonkuro-chip.svg')} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={u('/fonts/barlow-condensed-600.woff2')} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={u('/fonts/ibm-plex-mono-400.woff2')} />
@@ -35,7 +42,7 @@ const tajuk = judul ? `${judul} / MUFUYU` : 'MUFUYU';
 
   <body>
     <div class="shell">
-      <Rail />
+      <Rail bahasa={bahasa} />
       <main class="main" id="isi">
         <div class="sweep" aria-hidden="true"></div>
         <div class="col">

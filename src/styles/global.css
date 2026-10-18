@@ -21,8 +21,11 @@
   --accent-dim:  #6b4d09;
 
   /* Tipografi -------------------------------------------------------------- */
-  --font-display: 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', sans-serif;
-  --font-mono:    'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  /* Huruf Jepang tidak dibundel: browser memakai huruf Jepang bawaan sistem
+     dari daftar di bawah (tanpa permintaan ke CDN). */
+  --font-jp:      'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'YuGothic', 'Noto Sans JP', 'Noto Sans CJK JP', Meiryo, sans-serif;
+  --font-display: 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', var(--font-jp);
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, var(--font-jp);
 
   /* Ukuran ----------------------------------------------------------------- */
   --rail:    14rem;   /* lebar sidebar kiri */
@@ -355,3 +358,11 @@ a.panel:focus-visible { --edge: var(--accent); }
   .sweep { animation: none; background: var(--line); }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
+
+/* --- Bahasa Jepang ---------------------------------------------------------
+   Huruf kapital dan jarak huruf lebar tidak berlaku untuk aksara Jepang;
+   baris dipenggal per frasa. */
+:lang(ja) { line-break: strict; word-break: auto-phrase; }
+html:lang(ja) h1, html:lang(ja) h2 { letter-spacing: 0.02em; line-height: 1.3; }
+html:lang(ja) h1 { font-size: clamp(1.75rem, 3.6vw, 2.6rem); font-weight: 500; }
+html:lang(ja) .prose { line-height: 1.95; }

@@ -1,0 +1,18 @@
+---
+import Karya from '../../../views/Karya.astro';
+import { semuaKarya, BAHASA_TERJEMAHAN } from '../../../lib/bahasa';
+
+export async function getStaticPaths() {
+  const jalur = [];
+  for (const bahasa of BAHASA_TERJEMAHAN) {
+    const urut = (await semuaKarya(bahasa)).sort((a, b) => a.data.urutan - b.data.urutan);
+    jalur.push(...urut.map((entri, i) => ({
+      params: { bahasa, slug: entri.id },
+      props: { bahasa, entri, berikut: urut[(i + 1) % urut.length] },
+    })));
+  }
+  return jalur;
+}
+const { bahasa, entri, berikut } = Astro.props;
+---
+<Karya bahasa={bahasa} entri={entri} berikut={berikut} />

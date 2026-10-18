@@ -1,0 +1,10 @@
+---
+import Tentang from '../../views/Tentang.astro';
+import { BAHASA_TERJEMAHAN, type Bahasa } from '../../lib/bahasa';
+
+export function getStaticPaths() {
+  return BAHASA_TERJEMAHAN.map((bahasa) => ({ params: { bahasa } }));
+}
+const bahasa = Astro.params.bahasa as Bahasa;
+---
+<Tentang bahasa={bahasa} />

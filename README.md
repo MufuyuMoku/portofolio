@@ -13,6 +13,31 @@ npm run dev
 Perintah lain: `npm run build` (hasil ke `dist/`), `npm run preview`,
 `npm run sync-fonts` (menyalin ulang berkas font dari `node_modules`).
 
+## Tiga bahasa
+
+Situs tampil dalam bahasa Indonesia (`/`), Inggris (`/en/`), dan Jepang
+(`/ja/`). Pemilih bahasa ada di sidebar dan selalu menunjuk ke halaman yang
+sama di bahasa lain.
+
+- **Bahasa Indonesia adalah sumber utama.** Isinya tetap di
+  `src/content/karya/` dan `src/content/halaman/`.
+- **Terjemahan** ada di `src/content/terjemahan/<en|ja>/karya/<nama>.md` dan
+  `.../halaman/<beranda|tentang>.md`, dengan nama berkas yang sama seperti
+  aslinya. Isinya hanya kolom yang diterjemahkan (`judul`, `jenis`,
+  `ringkas`, `status`, `periode`, `peran`, `platform`, `lokasi`, `catatan`,
+  `spek`) ditambah badan markdown. Kolom lain (`kode`, `kelompok`, `urutan`,
+  `keadaan`, `tumpukan`, alamat tautan, berkas gambar) selalu diambil dari
+  berkas bahasa Indonesia.
+- Label tautan dan teks tangkapan layar diterjemahkan berurutan lewat
+  `tautanLabel` dan `tangkapanTeks`.
+- Kalau terjemahan sebuah karya belum ada, halamannya tampil dalam bahasa
+  Indonesia dengan keterangan kecil di bawah judul.
+- Teks antarmuka (sidebar, label bagian, label data) ada di `src/lib/teks.ts`.
+- Tautan antarhalaman di badan markdown terjemahan memakai awalan bahasanya,
+  mis. `/portofolio/en/karya/vocavoca/`.
+
+Huruf Jepang tidak dibundel; browser memakai huruf Jepang bawaan sistem.
+
 ## Menyunting isi
 
 Semua teks ada di `src/content/` — tidak perlu menyentuh kode.

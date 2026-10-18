@@ -1,30 +1,41 @@
 ---
-import { getCollection } from 'astro:content';
-import { u, aktif } from '../lib/url';
+import { aktif } from '../lib/url';
 import { kelompokkan } from '../lib/kelompok';
+import { semuaKarya, ul, jalurTanpaBahasa, BAHASA, LABEL_BAHASA, type Bahasa } from '../lib/bahasa';
+import { UI } from '../lib/teks';
 
-const kelompok = kelompokkan(await getCollection('karya'));
+interface Props { bahasa: Bahasa }
+const { bahasa } = Astro.props;
+const t = UI[bahasa];
+const kelompok = kelompokkan(await semuaKarya(bahasa), bahasa);
 const here = Astro.url.pathname;
+const jalur = jalurTanpaBahasa(here);
 
 type Item = { kode: string; label: string; href: string } | { grup: string };
 const nav: Item[] = [
-  { kode: '00', label: 'Beranda', href: u('/') },
+  { kode: '00', label: t.beranda, href: ul(bahasa, '/') },
   ...kelompok.flatMap((k) => [
     { grup: k.pendek },
-    ...k.isi.map((e) => ({ kode: e.data.kode, label: e.data.judul, href: u(`/karya/${e.id}`) })),
+    ...k.isi.map((e) => ({ kode: e.data.kode, label: e.data.judul, href: ul(bahasa, `/karya/${e.id}`) })),
   ]),
   { grup: '' },
-  { kode: '—', label: 'Tentang', href: u('/tentang') },
+  { kode: '—', label: t.tentang, href: ul(bahasa, '/tentang') },
 ];
 ---
 
 <aside class="rail">
   <div class="rail__atas">
-    <a class="rail__mark" href={u('/')}>Mufuyu</a>
-    <p class="label rail__sub">Siswa RPL</p>
+    <a class="rail__mark" href={ul(bahasa, '/')}>Mufuyu</a>
+    <p class="label rail__sub">{t.sub}</p>
   </div>
 
-  <nav class="nav" aria-label="Navigasi utama">
+  <nav class="bahasa" aria-label={t.pilihBahasa}>
+    {BAHASA.map((b) => (
+      <a href={ul(b, jalur)} hreflang={b} lang={b} aria-current={b === bahasa ? 'true' : undefined}>{LABEL_BAHASA[b]}</a>
+    ))}
+  </nav>
+
+  <nav class="nav" aria-label={t.navUtama}>
     <ul>
       {nav.map((item) => 'grup' in item ? (
         <li class="nav__grup" aria-hidden="true">{item.grup}</li>
@@ -42,7 +53,7 @@ const nav: Item[] = [
 
   <div class="rail__kaki">
     <hr class="rule rule--tight" />
-    <p class="status">Buka untuk kerja</p>
+    <p class="status">{t.bukaKerja}</p>
     <p class="label rail__tahun">MMXXVI</p>
   </div>
 </aside>
@@ -58,6 +69,12 @@ const nav: Item[] = [
     display: block;
   }
   .rail__sub { margin-top: 0.4rem; }
+
+  /* Pemilih bahasa */
+  .bahasa { display: flex; gap: 0.2rem; margin-top: -0.75rem; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.14em; }
+  .bahasa a { padding: 0.25rem 0.45rem; color: var(--fg-faint); border: 1px solid transparent; transition: color 0.18s linear, border-color 0.18s linear; }
+  .bahasa a:hover, .bahasa a:focus-visible { color: var(--fg); }
+  .bahasa a[aria-current] { color: var(--accent); border-color: var(--line); }
 
   .nav { margin-top: -0.5rem; }
   .nav ul { list-style: none; margin: 0; padding: 0; }
@@ -112,6 +129,7 @@ const nav: Item[] = [
   @media (max-width: 60rem) {
     .rail__atas { display: flex; align-items: baseline; gap: 0.75rem; }
     .rail__sub { margin-top: 0; }
+    .bahasa { margin-top: 0; }
     .nav { margin-top: 0; width: 100%; }
     .nav ul {
       display: flex;

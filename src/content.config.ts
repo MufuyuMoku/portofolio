@@ -55,4 +55,35 @@ const halaman = defineCollection({
   }),
 });
 
-export const collections = { karya, halaman };
+// Terjemahan Inggris dan Jepang: src/content/terjemahan/<en|ja>/karya/*.md dan
+// .../halaman/*.md. Semua kolom opsional; yang kosong diambil dari berkas
+// bahasa Indonesia (lihat src/lib/bahasa.ts).
+const terjemahan = defineCollection({
+  loader: glob({ base: './src/content/terjemahan', pattern: '*/{karya,halaman}/*.md' }),
+  schema: z.object({
+    judul: z.string().optional(),
+    kicau: z.string().optional(),
+    pembuka: z.string().optional(),
+    jenis: z.string().optional(),
+    ringkas: z.string().optional(),
+    status: z.string().optional(),
+    periode: z.string().optional(),
+    peran: z.string().optional(),
+    platform: z.string().optional(),
+    perusahaan: z.string().optional(),
+    lokasi: z.string().optional(),
+    catatan: z.string().optional(),
+    spek: z.array(z.object({
+      label: z.string(),
+      nilai: z.string(),
+      catatan: z.string().optional(),
+    })).optional(),
+    tautanLabel: z.array(z.string()).optional(),
+    tangkapanTeks: z.array(z.object({
+      alt: z.string(),
+      keterangan: z.string().optional(),
+    })).optional(),
+  }),
+});
+
+export const collections = { karya, halaman, terjemahan };

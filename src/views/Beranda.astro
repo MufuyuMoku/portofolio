@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import Bagian from '../components/Bagian.astro';
+import Baris from '../components/Baris.astro';
+import { render } from 'astro:content';
+import situs from '../data/situs.json';
+import { kelompokkan } from '../lib/kelompok';
+import { semuaKarya, halaman, type Bahasa } from '../lib/bahasa';
+import { UI } from '../lib/teks';
+
+interface Props { bahasa: Bahasa }
+const { bahasa } = Astro.props;
+const t = UI[bahasa];
+
+const beranda = await halaman(bahasa, 'beranda');
+const { Content } = await render(beranda);
+const kelompok = kelompokkan(await semuaKarya(bahasa), bahasa);
+---
+
+<Base bahasa={bahasa} judul="" deskripsi={beranda.data.judul}>
+  <header class="kepala">
+    <p class="label">{beranda.data.kicau}</p>
+    <h1>{beranda.data.judul}</h1>
+    <div class="prose kepala__teks">
+      <Content />
+    </div>
+  </header>
+
+  {kelompok.map((k) => (
+    <Bagian label={k.label}>
+      <div class="daftar">
+        {k.isi.map((e) => (
+          <Baris
+            bahasa={bahasa}
+            kode={e.data.kode}
+            judul={e.data.judul}
+            ringkas={e.data.ringkas}
+            status={e.data.status}
+            keadaan={e.data.keadaan}
+            periode={e.data.periode}
+            slug={e.id}
+          />
+        ))}
+      </div>
+    </Bagian>
+  ))}
+
+  <Bagian label={t.kontak}>
+    <div class="panel panel--bl kontak">
+      <dl class="data">
+        <dt>{t.surel}</dt>
+        <dd><a class="tautan" href={`mailto:${situs.email}`}>{situs.email}</a></dd>
+        <dt>GitHub</dt>
+        <dd><a class="tautan" href={situs.githubUrl} rel="me noopener">{situs.github}</a></dd>
+      </dl>
+    </div>
+  </Bagian>
+</Base>
+
+<style>
+  .kepala h1 { margin: 1rem 0 0; max-width: 20ch; }
+  .kepala__teks { margin-top: 2rem; }
+
+  .daftar { border-bottom: 0; }
+
+  .kontak { max-width: 34rem; }
+  .tautan { border-bottom: 1px solid var(--line); transition: border-color 0.18s linear; }
+  .tautan:hover, .tautan:focus-visible { border-bottom-color: var(--accent); }
+</style>

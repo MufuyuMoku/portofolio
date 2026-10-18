@@ -1,8 +1,9 @@
 ---
-import { u } from '../lib/url';
+import { ul, type Bahasa } from '../lib/bahasa';
 
 // Satu baris daftar karya di beranda. Sengaja baris penuh, bukan kartu.
 interface Props {
+  bahasa: Bahasa;
   kode: string;
   judul: string;
   ringkas: string;
@@ -11,10 +12,10 @@ interface Props {
   periode: string;
   slug: string;
 }
-const { kode, judul, ringkas, status, keadaan, periode, slug } = Astro.props;
+const { bahasa, kode, judul, ringkas, status, keadaan, periode, slug } = Astro.props;
 ---
 
-<a class="baris" href={u(`/karya/${slug}`)}>
+<a class="baris" href={ul(bahasa, `/karya/${slug}`)}>
   <span class="baris__kode">{kode}</span>
   <span class="baris__isi">
     <span class="baris__judul">{judul}</span>

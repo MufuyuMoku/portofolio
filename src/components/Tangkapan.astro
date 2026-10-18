@@ -1,17 +1,20 @@
 ---
 import { existsSync } from 'node:fs';
 import { u } from '../lib/url';
+import type { Bahasa } from '../lib/bahasa';
+import { UI } from '../lib/teks';
 
 // Bingkai tangkapan layar. Berkas gambar ditaruh di public/img/...
 // Kalau berkasnya belum ada, yang tampil bingkai kosong berisi alamat
 // yang ditunggu — jadi tata letaknya tetap terlihat benar.
 interface Props {
+  bahasa: Bahasa;
   src: string;
   alt: string;
   keterangan?: string;
   indeks?: number;
 }
-const { src, alt, keterangan, indeks } = Astro.props;
+const { bahasa, src, alt, keterangan, indeks } = Astro.props;
 const ada = existsSync(new URL(`../../public${src.startsWith('/') ? src : `/${src}`}`, import.meta.url));
 const nomor = indeks === undefined ? null : String(indeks).padStart(2, '0');
 ---
@@ -22,7 +25,7 @@ const nomor = indeks === undefined ? null : String(indeks).padStart(2, '0');
       ? <img src={u(src)} alt={alt} loading="lazy" decoding="async" />
       : (
         <div class="tangkapan__kosong">
-          <p class="label">Slot gambar kosong</p>
+          <p class="label">{UI[bahasa].slotKosong}</p>
           <p class="tangkapan__jalur">public{src}</p>
         </div>
       )}
