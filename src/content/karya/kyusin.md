@@ -1,8 +1,8 @@
 ---
 # ---------------------------------------------------------------------------
-# Isi halaman ini diambil dari repo github.com/MufuyuMoku/kyusin per 9 Oktober
+# Isi halaman ini diambil dari repo github.com/MufuyuMoku/kyusin per 23 Oktober
 # 2026: SPEC.md, PROGRESS.md (tabel status milestone dan status game, log sesi
-# M6a), dan DECISIONS.md. README repo masih menulis "Status: M1"; yang dipakai
+# M6a dan M6b), dan DECISIONS.md. README repo masih menulis "Status: M1"; yang dipakai
 # di sini PROGRESS.md, yang lebih baru.
 # SPEC: nama produk ditulis persis "KyuSin", label proyek "Project Sinners".
 # Jangan mengarang kepanjangan atau arti keduanya.
@@ -14,8 +14,8 @@ kelompok: dimeja
 jenis: Aplikasi desktop — game · Project Sinners
 urutan: 4
 ringkas: Kumpulan game ringan — papan, kartu, dan casino — dalam satu wadah bergaya terminal retro dengan efek CRT samar. Dimainkan secara visual, dengan mode perintah teks sebagai opsi. Dua bahasa, tanpa akun dan tanpa internet.
-status: Istirahat — M6a selesai, lanjut sesudah Onsa
-keadaan: istirahat
+status: Dikerjakan — M6b selesai · Okt 2026
+keadaan: dikerjakan
 periode: September 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, dan verifikasi tiap milestone; implementasi dengan Claude Code
 platform: Desktop — Windows dan Linux (belum ada pemasang)
@@ -28,14 +28,14 @@ tumpukan:
 
 spek:
   - label: Game selesai
-    nilai: "26"
-    catatan: Memenuhi kesembilan butir Definition of Done di SPEC §7, per M6a.
+    nilai: "33"
+    catatan: Memenuhi Definition of Done di SPEC §7, per M6b. Untuk tujuh game solo, butir bot tidak berlaku.
   - label: Tes Rust
-    nilai: "346"
-    catatan: Dari log sesi M6a di PROGRESS.md, ditambah 49 tes UI.
+    nilai: "375"
+    catatan: Dari log sesi M6b di PROGRESS.md, ditambah 49 tes UI.
   - label: Taruhan casino ber-RTP
-    nilai: "41"
-    catatan: Di M6a saja; semuanya di bawah 100%, dihitung tepat lalu dicocokkan dengan simulasi di CI.
+    nilai: "58"
+    catatan: 41 di M6a dan 17 di M6b; semuanya di bawah 100%, dihitung tepat lalu dicocokkan dengan simulasi di CI.
   - label: Level catur
     nilai: "6"
     catatan: Dikalibrasi terhadap Stockfish 19; level 5 dan 6 sekitar 1826 dan 2093.
@@ -75,9 +75,10 @@ Sekarang pengerjaannya masih di jalan menuju poin pertama.
 
 ## Yang sudah jadi
 
-Per M6a (9 Oktober 2026), 26 game memenuhi Definition of Done: aturan dan
+Per M6b (23 Oktober 2026), 33 game memenuhi Definition of Done: aturan dan
 tes, bot, tampilan visual, perintah teks, tutorial interaktif yang dijaga tes
-otomatis, replay, dan manifest.
+otomatis, replay, dan manifest. Tujuh game lotere dan instan dimainkan sendiri
+melawan rumah, jadi butir bot tidak berlaku untuknya.
 
 | Kelompok | Game |
 | --- | --- |
@@ -85,6 +86,7 @@ otomatis, replay, dan manifest.
 | Kartu melawan bandar | Blackjack, Baccarat, Dragon Tiger, Casino War, Red Dog, Andar Bahar, Three Card Poker, Caribbean Stud, Casino Hold'em, Let It Ride, Pai Gow Poker |
 | Kartu antar-pemain (melawan bot) | Texas Hold'em, Omaha, Teen Patti, Capsa Susun, Domino QiuQiu |
 | Dadu, roda, ubin | Roulette Eropa, Roulette Amerika, Craps, Sic Bo, Big Six, Fan-Tan, Pai Gow ubin, Chuck-a-luck |
+| Lotere dan instan (solo) | Keno, Bingo, Kartu gosok, Hi-Lo, Video Poker: Jacks or Better, Deuces Wild, Joker Poker |
 
 Catur punya enam level yang dikalibrasi terhadap Stockfish 19 — Stockfish
 hanya dipakai sebagai alat ukur di mesin pengembang, tidak ikut dibundel.
@@ -112,7 +114,6 @@ Rating lokal memakai Glicko-2.
 
 | Milestone | Isi |
 | --- | --- |
-| M6b | Keno, Bingo, kartu gosok, Hi-Lo, Video Poker |
 | M7 | Arcade casino, dengan kontrak untuk game yang berjalan menurut waktu |
 | M8 | Papan dan kartu non-casino sisanya, termasuk Gaple, Cangkulan, dan Remi — **poin akhir 1** |
 | M9 | LAN: host dan join, penemuan otomatis, lobi, provably fair lintas jaringan — **poin akhir 2** |

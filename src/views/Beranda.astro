@@ -1,9 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import Bagian from '../components/Bagian.astro';
+import Kontak from '../components/Kontak.astro';
 import Baris from '../components/Baris.astro';
 import { render } from 'astro:content';
-import situs from '../data/situs.json';
 import { kelompokkan } from '../lib/kelompok';
 import { semuaKarya, halaman, type Bahasa } from '../lib/bahasa';
 import { UI } from '../lib/teks';
@@ -46,14 +46,7 @@ const kelompok = kelompokkan(await semuaKarya(bahasa), bahasa);
   ))}
 
   <Bagian label={t.kontak}>
-    <div class="panel panel--bl kontak">
-      <dl class="data">
-        <dt>{t.surel}</dt>
-        <dd><a class="tautan" href={`mailto:${situs.email}`}>{situs.email}</a></dd>
-        <dt>GitHub</dt>
-        <dd><a class="tautan" href={situs.githubUrl} rel="me noopener">{situs.github}</a></dd>
-      </dl>
-    </div>
+    <Kontak bahasa={bahasa} />
   </Bagian>
 </Base>
 
@@ -63,7 +56,4 @@ const kelompok = kelompokkan(await semuaKarya(bahasa), bahasa);
 
   .daftar { border-bottom: 0; }
 
-  .kontak { max-width: 34rem; }
-  .tautan { border-bottom: 1px solid var(--line); transition: border-color 0.18s linear; }
-  .tautan:hover, .tautan:focus-visible { border-bottom-color: var(--accent); }
 </style>

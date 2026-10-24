@@ -15,6 +15,8 @@ export type TeksUI = {
   deskripsiTentang: string;
   kontak: string;
   surel: string;
+  jasaAjak: string;        // baris kontak: ajakan ke halaman jasa Pyonkuro
+  jasaTautan: string;
   catatan: string;
   // halaman karya
   jenisKerja: string;
@@ -60,6 +62,8 @@ export const UI: Record<Bahasa, TeksUI> = {
     deskripsiTentang: 'Cara kerja, alat, dan kontak.',
     kontak: 'Kontak',
     surel: 'Surel',
+    jasaAjak: 'Ingin dibuatkan sesuatu?',
+    jasaTautan: 'Lihat halaman jasa Pyonkuro',
     catatan: 'Catatan',
     jenisKerja: 'Penempatan kerja',
     jenisKarya: 'Karya',
@@ -102,6 +106,8 @@ export const UI: Record<Bahasa, TeksUI> = {
     deskripsiTentang: 'How I work, my tools, and contact.',
     kontak: 'Contact',
     surel: 'Email',
+    jasaAjak: 'Want something made?',
+    jasaTautan: 'See the Pyonkuro services page',
     catatan: 'Notes',
     jenisKerja: 'Work placement',
     jenisKarya: 'Work',
@@ -144,6 +150,8 @@ export const UI: Record<Bahasa, TeksUI> = {
     deskripsiTentang: '進め方、道具、連絡先。',
     kontak: '連絡先',
     surel: 'メール',
+    jasaAjak: '何か作ってほしいときは',
+    jasaTautan: 'Pyonkuro のサービスページへ',
     catatan: 'メモ',
     jenisKerja: '実習先',
     jenisKarya: '作品',

@@ -1,7 +1,7 @@
 ---
 jenis: Desktop app — audio
 ringkas: A UTAU voicebank maker built on OpenUtau. The goal is that you just read the script the app prepares, and the voicebank builds itself. The first stage has already been proven with a voicebank made from my own voice.
-status: Waiting — Stage 1 done, waiting on vocal recording
+status: Waiting — Stage 1 done, waiting on a vocal re-recording · Oct 2026
 periode: October 2026 — ongoing
 peran: Specification, scope decisions, verification, and voice recording; implementation with Claude Code
 platform: Desktop — Windows x64 (test package)

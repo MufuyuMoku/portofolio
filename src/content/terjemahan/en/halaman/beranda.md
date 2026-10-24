@@ -1,5 +1,5 @@
 ---
-judul: A software engineering student who builds his own tools — desktop, web, and audio
+judul: A software engineering student who builds their own tools — desktop, web, and audio
 kicau: Portfolio — 2026
 ---
 

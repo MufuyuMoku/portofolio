@@ -1,20 +1,20 @@
 ---
 jenis: Desktop app — games · Project Sinners
 ringkas: A collection of light games — board, card, and casino — in one retro-terminal shell with a faint CRT effect. Played visually, with a text-command mode as an option. Two languages, no account and no internet.
-status: Resting — M6a done, continues after Onsa
+status: In progress — M6b done · Oct 2026
 periode: September 2026 — ongoing
 peran: Specification, scope decisions, and verification of every milestone; implementation with Claude Code
 platform: Desktop — Windows and Linux (no installer yet)
 spek:
   - label: Finished games
-    nilai: "26"
-    catatan: Meet all nine Definition of Done points in SPEC §7, as of M6a.
+    nilai: "33"
+    catatan: Meet the Definition of Done in SPEC §7, as of M6b. For the seven solo games, the bot point does not apply.
   - label: Rust tests
-    nilai: "346"
-    catatan: From the M6a session log in PROGRESS.md, plus 49 UI tests.
+    nilai: "375"
+    catatan: From the M6b session log in PROGRESS.md, plus 49 UI tests.
   - label: Casino bets with RTP
-    nilai: "41"
-    catatan: In M6a alone; all below 100%, computed exactly and then matched against simulation in CI.
+    nilai: "58"
+    catatan: 41 in M6a and 17 in M6b; all below 100%, computed exactly and then matched against simulation in CI.
   - label: Chess levels
     nilai: "6"
     catatan: Calibrated against Stockfish 19; levels 5 and 6 are about 1826 and 2093.
@@ -52,9 +52,10 @@ Right now the work is still on the road to the first goal.
 
 ## What is done
 
-As of M6a (9 October 2026), 26 games meet the Definition of Done: rules and
+As of M6b (23 October 2026), 33 games meet the Definition of Done: rules and
 tests, bots, visuals, text commands, an interactive tutorial guarded by
-automated tests, replays, and a manifest.
+automated tests, replays, and a manifest. The seven lottery and instant games
+are played alone against the house, so the bot point does not apply to them.
 
 | Group | Games |
 | --- | --- |
@@ -62,6 +63,7 @@ automated tests, replays, and a manifest.
 | Cards against the dealer | Blackjack, Baccarat, Dragon Tiger, Casino War, Red Dog, Andar Bahar, Three Card Poker, Caribbean Stud, Casino Hold'em, Let It Ride, Pai Gow Poker |
 | Cards between players (against bots) | Texas Hold'em, Omaha, Teen Patti, Capsa Susun, Domino QiuQiu |
 | Dice, wheels, tiles | European Roulette, American Roulette, Craps, Sic Bo, Big Six, Fan-Tan, Pai Gow tiles, Chuck-a-luck |
+| Lottery and instant (solo) | Keno, Bingo, Scratch cards, Hi-Lo, Video Poker: Jacks or Better, Deuces Wild, Joker Poker |
 
 Chess has six levels calibrated against Stockfish 19 — Stockfish is only used
 as a measuring tool on the developer's machine and is not bundled. Local
@@ -88,7 +90,6 @@ ratings use Glicko-2.
 
 | Milestone | Contents |
 | --- | --- |
-| M6b | Keno, Bingo, scratch cards, Hi-Lo, Video Poker |
 | M7 | Casino arcade, with a contract for games that run on time |
 | M8 | The remaining non-casino board and card games, including Gaple, Cangkulan, and Remi — **end goal 1** |
 | M9 | LAN: host and join, automatic discovery, lobby, provably fair across the network — **end goal 2** |

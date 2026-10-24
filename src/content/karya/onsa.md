@@ -2,14 +2,16 @@
 # ---------------------------------------------------------------------------
 # Isi halaman ini diambil dari repo github.com/MufuyuMoku/onsa:
 # README.md, docs/SPEC.md, docs/PROGRESS.md, docs/DECISIONS.md, CLAUDE.md, dan
-# catatan rilis v1.4.0 di GitHub. Angka tes dihitung dari pohon sumber repo itu,
-# pada tag v1.4.0, dengan cara yang sama seperti hitungan v1.2.0 sebelumnya
-# (cara itu diuji ulang: pada v1.2.0 tetap memberi 347 dan 34).
+# catatan rilis v1.4.0–v1.5.1 di GitHub. Angka tes dihitung dari pohon sumber
+# repo itu, pada tag v1.5.1, dengan cara yang sama seperti hitungan v1.2.0
+# sebelumnya (cara itu diuji ulang: pada v1.2.0 tetap memberi 347 dan 34).
 # Repo sengaja tanpa lisensi (SPEC §16): jangan tulis "open source".
 #
-# M16: konsep enam tema baru disetujui Fata pada 10 Oktober 2026, di luar
-# repo (repo Onsa diperbarui terpisah); kunci nama dan watak tema sudah dibuka.
-# Urutan tetap v1.4.1 dulu, M16 sesudahnya. Jangan tulis M16 "sedang dikerjakan".
+# Status per 24 Oktober 2026: v1.5.1 rilis 24 Okt (ikon final); v1.5.0 rilis
+# 23 Okt (M16, enam tema baru). Pembaruan berikutnya sedang dikerjakan,
+# termasuk landing page. Tautan rilis
+# memakai /releases/latest supaya tidak perlu diubah tiap rilis.
+# Landing page: mufuyumoku.github.io/onsa/ (homepage repo, Pages hidup).
 # ---------------------------------------------------------------------------
 judul: Onsa
 kode: "01"
@@ -17,7 +19,7 @@ kelompok: ditampilkan
 jenis: Aplikasi desktop — audio
 urutan: 1
 ringkas: Pemutar musik desktop untuk orang yang menyimpan berkas musiknya sendiri. Strip di bawah jendela menunjukkan rantai yang benar-benar dilewati sinyal — format sumber, resample, ReplayGain, EQ, limiter, sampai backend output.
-status: v1.4.0 — dirilis · pembaruan sedang dikerjakan
+status: v1.5.1 — dirilis · pembaruan sedang dikerjakan, termasuk landing page · Okt 2026
 keadaan: aktif
 periode: September 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, dan verifikasi tiap milestone; implementasi dengan Claude Code
@@ -31,23 +33,25 @@ tumpukan:
 
 spek:
   - label: Fungsi tes Rust
-    nilai: "416"
-    catatan: Dihitung pada tag v1.4.0 dari penanda #[test] dan #[tokio::test] di seluruh pohon sumber, bukan dari laporan jalannya tes.
+    nilai: "434"
+    catatan: Dihitung pada tag v1.5.1 dari penanda #[test] dan #[tokio::test] di seluruh pohon sumber, bukan dari laporan jalannya tes.
   - label: Tes frontend
-    nilai: "49"
-    catatan: node --test, tujuh berkas di ui/src/lib.
+    nilai: "56"
+    catatan: node --test, delapan berkas di ui/src/lib.
   - label: Milestone selesai
-    nilai: "13"
-    catatan: M0–M6, M7a, M8, M10a, M13, M14, M15. M10b sebagian (sisanya di v1.4.1), M9 dilewati.
+    nilai: "15"
+    catatan: M0–M6, M7a, M8, M10a, M10b, M13, M14, M15, M16. M9 dilewati.
   - label: Crate Rust
     nilai: "6"
     catatan: Ditambah lapisan aplikasi src-tauri dan antarmuka SvelteKit.
 
 tautan:
   - label: Rilis
-    href: https://github.com/MufuyuMoku/onsa/releases/tag/v1.4.0
+    href: https://github.com/MufuyuMoku/onsa/releases/latest
   - label: Kode di GitHub
     href: https://github.com/MufuyuMoku/onsa
+  - label: Landing page
+    href: https://mufuyumoku.github.io/onsa/
 
 tangkapan:
   - src: /img/onsa/onsa.png
@@ -71,40 +75,45 @@ dimatikan dari strip itu.
 Tidak ada yang menghubungi internet kecuali dinyalakan sendiri. Semua fitur
 jaringan mati secara bawaan.
 
-Yang ada di v1.4.0: pemutaran gapless dan crossfade, antrean yang bisa diurut
+Yang ada di v1.5.1: pemutaran gapless dan crossfade, antrean yang bisa diurut
 ulang, playlist manual dan playlist pintar, rantai DSP yang terlihat, library
 dengan pencarian teks penuh dan folder sumber yang bisa dilepas atau
 dipindahkan, editor tag satuan dan massal, lirik dari tiga sumber, layar Sedang
-diputar yang panelnya bisa diatur, enam tema bawaan, bantuan di dalam
-aplikasi, dan dua bahasa antarmuka. Unduhan lewat yt-dlp kini berjalan
-beberapa sekaligus, dan program yang dibutuhkannya — yt-dlp, ffmpeg, Deno,
-fpcalc — diambil Onsa sendiri, hanya setelah disetujui dan sesudah cocok
-dengan checksum rilis resminya.
+diputar yang panelnya bisa diatur, enam tema bawaan dengan susunan khasnya
+masing-masing, bantuan di dalam aplikasi, dan dua bahasa antarmuka. Unduhan
+lewat yt-dlp berjalan beberapa sekaligus, antreannya tetap ada sesudah Onsa
+ditutup, dan program yang dibutuhkannya — yt-dlp, ffmpeg, Deno, fpcalc —
+diambil Onsa sendiri, hanya setelah disetujui dan sesudah cocok dengan
+checksum rilis resminya.
 
 Berkas pemasangnya ada di
-[halaman rilis v1.4.0](https://github.com/MufuyuMoku/onsa/releases/tag/v1.4.0),
-dibangun dan diunggah CI: `Onsa_1.4.0_x64-setup.exe` (11,79 MB) untuk
-Windows, serta `.deb` (18,93 MB) dan AppImage (89,92 MB) untuk Linux — paket
-Linux pertama Onsa. Paket Linux baru dicoba di WSL, belum di mesin Linux
-sungguhan.
+[halaman rilis terbaru](https://github.com/MufuyuMoku/onsa/releases/latest),
+dibangun dan diunggah CI: `.exe` untuk Windows, serta `.deb` dan AppImage
+untuk Linux. Paket Linux baru dicoba di WSL, belum di mesin Linux sungguhan.
 
 Kode Onsa bisa dilihat di
 [GitHub](https://github.com/MufuyuMoku/onsa). Repo-nya sengaja belum
 berlisensi; keputusan lisensi ditahan sampai nanti.
 
-## Berikutnya
+## Sesudah v1.4.0
 
-**v1.4.1** menutup sisa M10b: antrean unduhan yang tetap ada sesudah Onsa
-ditutup, dan folder hasil unduhan yang bisa dipilih. Kodenya sudah masuk repo,
-tapi rilisnya belum ditandai.
+**v1.4.1** (11 Oktober 2026) menutup sisa M10b: antrean unduhan yang tetap ada
+sesudah Onsa ditutup, dan folder hasil unduhan yang bisa dipilih.
 
-Lalu **M16** (v1.5 "Tampilan"): perombakan total enam tema bawaan, masing-masing
-dengan layout sendiri. Tema pembukanya bertema kokpit pesawat analog vintage.
-Konsep keenam tema sudah disetujui; skema temanya diperluas di luar warna —
-huruf, material permukaan, bingkai, gaya meter dan visualizer, dan animasi.
+**v1.5.0 "Tampilan"** (23 Oktober 2026) menutup M16: keenam tema bawaan
+dirombak total, masing-masing dengan susunan khasnya sendiri. Tema pembukanya
+Kokpit Tua — panel instrumen tua dengan pelat nama, dial posisi, dan jarum VU.
+Susunan kini terpisah dari tema dan bisa dipilih sendiri. Rilis itu juga
+menutup celah keamanan: build sampai v1.4.1 membuka port debugging bila
+diminta lewat variabel lingkungan, dan v1.5 menolaknya.
 
-Tangkapan layar di halaman ini masih tampilan lama; diganti setelah M16
-dirilis.
+**v1.5.1** (24 Oktober 2026) membawa ikon final Onsa, digambar dari sketsa
+pemilik proyek; ukuran 16 dan 32 px digambar terpisah per piksel. Tidak ada
+fitur baru.
+
+Pembaruan berikutnya sedang dikerjakan, termasuk
+[landing page Onsa](https://mufuyumoku.github.io/onsa/). Tangkapan layar di
+halaman ini masih tampilan sebelum v1.5.
 
 ## Mesin audio terpisah total dari tampilan
 
@@ -221,20 +230,20 @@ sinus kontinu diputar berurutan lalu dibandingkan dengan sinus utuh, dan
 tidak boleh ada diskontinuitas. Respons biquad diperiksa di beberapa frekuensi
 uji dengan toleransi ±0,1 dB.
 
-Jumlah fungsi tes di pohon sumber pada tag v1.4.0, dihitung dari penanda
+Jumlah fungsi tes di pohon sumber pada tag v1.5.1, dihitung dari penanda
 `#[test]` dan `#[tokio::test]`:
 
 | Bagian | Fungsi tes |
 | --- | --- |
-| `src-tauri` | 126 |
-| `onsa-library` | 112 |
+| `src-tauri` | 142 |
+| `onsa-library` | 114 |
 | `onsa-audio` | 82 |
 | `onsa-downloader` | 58 |
 | `onsa-lyrics` | 36 |
 | `onsa-cli` | 2 |
 | `onsa-scrobble` | 0 — menunggu M9 |
-| **Rust, total** | **416** |
-| Frontend (`node --test`) | 49 |
+| **Rust, total** | **434** |
+| Frontend (`node --test`) | 56 |
 
 Angka di atas adalah jumlah fungsi tes yang ada di sumber, bukan hasil satu
 kali jalan. CI menjalankan `cargo fmt --check`, `cargo clippy -- -D warnings`,
@@ -269,8 +278,10 @@ selesai.
 | M10b ffmpeg, Deno, fpcalc, unduhan paralel | Sebagian 29 Sep — sisanya di v1.4.1 |
 | M15 Daftar sumber unduhan di Bantuan | Selesai 29 Sep |
 | **v1.4.0** "Unduhan penuh" — M10b, M15, paket Linux dari CI | Ditandai 9 Okt 2026 — `27aefb8` |
-| v1.4.1 Sisa M10b | Dikerjakan, belum ditandai |
-| M16 Tampilan (v1.5) — enam tema baru, konsep disetujui 10 Okt | Berikutnya, sesudah v1.4.1 |
+| **v1.4.1** — sisa M10b | Ditandai 11 Okt 2026 — `7c6a8fd` |
+| **v1.5.0** "Tampilan" — M16, enam tema baru | Ditandai 23 Okt 2026 — `e4785d2` |
+| **v1.5.1** — ikon final | Ditandai 24 Okt 2026 — `c724afd` |
+| Pembaruan berikutnya, termasuk landing page | Dikerjakan |
 | M17, M7b (v1.6) · M11, M18 (v1.7) | Direncanakan |
 | M9 Scrobble | Dilewati, belum bertanggal |
 
@@ -287,22 +298,19 @@ dibuktikan sekali terhadap layanan sungguhan, dan berkas pemasang Windows kini
 dibangun CI — karena build di mesin pemilik ternyata ikut menanam kunci
 AcoustID pribadinya ke dalam biner.
 
-Fitur baru masuk lagi mulai v1.3.0 dan v1.4.0, keduanya mengikuti garis rilis
+Fitur baru masuk lagi mulai v1.3.0, v1.4.0, dan v1.5.0, semuanya mengikuti garis rilis
 yang diputuskan 25 September. Laporan tester tidak dijadikan gerbang rilis;
 yang datang masuk ke rilis patch berikutnya.
 
 ## Batas yang diketahui
 
 Ditulis apa adanya di README dan catatan rilis, bukan disembunyikan. Yang
-berlaku untuk v1.4.0:
+berlaku untuk v1.5.1:
 
 - **ffmpeg dan Deno opsional.** Tanpa ffmpeg unduhan tetap berjalan, tapi
   audionya diambil apa adanya — tanpa tag dan sampul tertanam, dan konversi ke
   MP3 atau FLAC tidak tersedia. Tanpa Deno, sebagian format YouTube bisa tidak
   tersedia. Halaman Unduhan mengatakan keduanya.
-- **Antrean unduhan belum disimpan.** Unduhan yang belum selesai hilang bila
-  Onsa ditutup, dan hasilnya selalu masuk `Unduhan` di folder library
-  pertama. Keduanya ditutup di v1.4.1.
 - **Sumber yang hanya menyediakan Opus ditolak** dengan pesan, karena belum
   ada decoder Opus. Lebih baik ditolak di muka daripada berkasnya mendarat
   lalu tidak pernah muncul di library.
@@ -310,4 +318,4 @@ berlaku untuk v1.4.0:
 - **Linux baru dicoba di WSL**, belum di mesin Linux sungguhan.
 - Timing per kata sudah dibaca dan disimpan, tapi belum digambar per kata —
   barisnya yang menyala, bukan katanya.
-- Ikon final belum ada, dan lisensi proyek sengaja ditahan.
+- Lisensi proyek sengaja ditahan.

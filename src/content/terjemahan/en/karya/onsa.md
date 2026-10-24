@@ -1,26 +1,27 @@
 ---
 jenis: Desktop app — audio
 ringkas: A desktop music player for people who keep their own music files. A strip at the bottom of the window shows the chain the signal actually goes through — source format, resample, ReplayGain, EQ, limiter, all the way to the output backend.
-status: v1.4.0 — released · update in progress
+status: v1.5.1 — released · update in progress, including the landing page · Oct 2026
 periode: September 2026 — ongoing
 peran: Specification, scope decisions, and verification of every milestone; implementation with Claude Code
 platform: Desktop — Windows 10/11 and Linux (x86_64)
 spek:
   - label: Rust test functions
-    nilai: "416"
-    catatan: Counted at tag v1.4.0 from #[test] and #[tokio::test] markers across the source tree, not from a test run report.
+    nilai: "434"
+    catatan: Counted at tag v1.5.1 from #[test] and #[tokio::test] markers across the source tree, not from a test run report.
   - label: Frontend tests
-    nilai: "49"
-    catatan: node --test, seven files in ui/src/lib.
+    nilai: "56"
+    catatan: node --test, eight files in ui/src/lib.
   - label: Milestones done
-    nilai: "13"
-    catatan: M0–M6, M7a, M8, M10a, M13, M14, M15. M10b partly (the rest in v1.4.1), M9 skipped.
+    nilai: "15"
+    catatan: M0–M6, M7a, M8, M10a, M10b, M13, M14, M15, M16. M9 skipped.
   - label: Rust crates
     nilai: "6"
     catatan: Plus the src-tauri app layer and the SvelteKit interface.
 tautanLabel:
   - Release
   - Code on GitHub
+  - Landing page
 tangkapanTeks:
   - alt: The Onsa window — the Now Playing screen with cover art, lyrics that move with the song, meters, and the signal path strip
     keterangan: Now Playing — cover art, lyrics that move with the song, meters, and the signal path strip.
@@ -41,40 +42,45 @@ the output backend. Each stage can be switched off from that strip.
 Nothing contacts the internet unless you turn it on yourself. All network
 features are off by default.
 
-What is in v1.4.0: gapless playback and crossfade, a reorderable queue,
+What is in v1.5.1: gapless playback and crossfade, a reorderable queue,
 manual and smart playlists, a visible DSP chain, a library with full-text
 search and source folders that can be detached or moved, single and bulk tag
 editors, lyrics from three sources, a Now Playing screen with adjustable
-panels, six built-in themes, in-app help, and two interface languages.
-Downloads through yt-dlp now run several at a time, and the programs it
-needs — yt-dlp, ffmpeg, Deno, fpcalc — are fetched by Onsa itself, only after
-you approve and only once they match the checksums of their official
-releases.
+panels, six built-in themes each with its own signature layout, in-app help,
+and two interface languages. Downloads through yt-dlp run several at a time,
+the queue survives closing Onsa, and the programs it needs — yt-dlp, ffmpeg,
+Deno, fpcalc — are fetched by Onsa itself, only after you approve and only
+once they match the checksums of their official releases.
 
 The installers are on the
-[v1.4.0 release page](https://github.com/MufuyuMoku/onsa/releases/tag/v1.4.0),
-built and uploaded by CI: `Onsa_1.4.0_x64-setup.exe` (11.79 MB) for Windows,
-plus a `.deb` (18.93 MB) and an AppImage (89.92 MB) for Linux — Onsa's first
-Linux packages. The Linux packages have only been tried in WSL, not yet on a
-real Linux machine.
+[latest release page](https://github.com/MufuyuMoku/onsa/releases/latest),
+built and uploaded by CI: an `.exe` for Windows, plus a `.deb` and an
+AppImage for Linux. The Linux packages have only been tried in WSL, not yet on
+a real Linux machine.
 
 Onsa's code can be read on [GitHub](https://github.com/MufuyuMoku/onsa). The
 repo deliberately has no license yet; the licensing decision is on hold.
 
-## Next
+## After v1.4.0
 
-**v1.4.1** closes what remains of M10b: a download queue that survives
-closing Onsa, and a choosable folder for downloads. The code is already in
-the repo, but the release is not tagged yet.
+**v1.4.1** (11 October 2026) closes what remained of M10b: a download queue
+that survives closing Onsa, and a choosable folder for downloads.
 
-Then **M16** (v1.5 "Display"): a complete overhaul of the six built-in themes,
-each with its own layout. The opening theme is a vintage analog aircraft
-cockpit. The concepts for all six themes are approved; the theme schema is
-being extended beyond color — typefaces, surface materials, frames, meter and
-visualizer styles, and animation.
+**v1.5.0 "Display"** (23 October 2026) closes M16: all six built-in themes are
+completely reworked, each with its own signature layout. The opening theme is
+Kokpit Tua ("old cockpit") — a vintage instrument panel with a name plate, a
+position dial, and VU needles. Layout is now separate from theme and can be
+chosen on its own. That release also closed a security gap: builds up to
+v1.4.1 opened a debugging port when asked to through an environment
+variable, and v1.5 refuses.
 
-The screenshots on this page still show the old look; they will be replaced
-after M16 is released.
+**v1.5.1** (24 October 2026) brings Onsa's final icon, drawn from the project
+owner's sketch; the 16 and 32 px sizes are drawn separately, pixel by pixel.
+No new features.
+
+The next update is in progress, including the
+[Onsa landing page](https://mufuyumoku.github.io/onsa/). The screenshots on
+this page still show the look from before v1.5.
 
 ## The audio engine is fully separate from the interface
 
@@ -193,20 +199,20 @@ offline sink: two files cut from one continuous sine are played in sequence
 and compared with the whole sine, and there must be no discontinuity. Biquad
 responses are checked at several test frequencies with a ±0.1 dB tolerance.
 
-The number of test functions in the source tree at tag v1.4.0, counted from
+The number of test functions in the source tree at tag v1.5.1, counted from
 `#[test]` and `#[tokio::test]` markers:
 
 | Part | Test functions |
 | --- | --- |
-| `src-tauri` | 126 |
-| `onsa-library` | 112 |
+| `src-tauri` | 142 |
+| `onsa-library` | 114 |
 | `onsa-audio` | 82 |
 | `onsa-downloader` | 58 |
 | `onsa-lyrics` | 36 |
 | `onsa-cli` | 2 |
 | `onsa-scrobble` | 0 — waiting for M9 |
-| **Rust, total** | **416** |
-| Frontend (`node --test`) | 49 |
+| **Rust, total** | **434** |
+| Frontend (`node --test`) | 56 |
 
 These are the number of test functions in the source, not the result of a
 single run. CI runs `cargo fmt --check`, `cargo clippy -- -D warnings`,
@@ -242,8 +248,10 @@ completion criteria.
 | M10b ffmpeg, Deno, fpcalc, parallel downloads | Partly 29 Sep — the rest in v1.4.1 |
 | M15 Download source list in Help | Done 29 Sep |
 | **v1.4.0** "Full downloads" — M10b, M15, Linux packages from CI | Tagged 9 Oct 2026 — `27aefb8` |
-| v1.4.1 Rest of M10b | In progress, not tagged yet |
-| M16 Display (v1.5) — six new themes, concepts approved 10 Oct | Next, after v1.4.1 |
+| **v1.4.1** — rest of M10b | Tagged 11 Oct 2026 — `7c6a8fd` |
+| **v1.5.0** "Display" — M16, six new themes | Tagged 23 Oct 2026 — `e4785d2` |
+| **v1.5.1** — final icon | Tagged 24 Oct 2026 — `c724afd` |
+| Next update, including the landing page | In progress |
 | M17, M7b (v1.6) · M11, M18 (v1.7) | Planned |
 | M9 Scrobble | Skipped, no date yet |
 
@@ -257,24 +265,21 @@ findings from an audit session. v1.1.0 added in-app help, so someone opening
 Onsa for the first time can use it without asking its owner. v1.2.0 prepared
 a package for testers: every internet path was proven once against the real
 service, and the Windows installer is now built by CI — because building on
-the owner's machine turned out to bake his personal AcoustID key into the
+the owner's machine turned out to bake their personal AcoustID key into the
 binary.
 
-New features came back from v1.3.0 and v1.4.0, both following the release
+New features came back from v1.3.0, v1.4.0, and v1.5.0, all following the release
 line decided on 25 September. Tester reports are not a release gate; what
 comes in goes into the next patch release.
 
 ## Known limits
 
-Written as they are in the README and release notes, not hidden. For v1.4.0:
+Written as they are in the README and release notes, not hidden. For v1.5.1:
 
 - **ffmpeg and Deno are optional.** Without ffmpeg, downloads still work, but
   the audio is taken as it is — no embedded tags or cover art, and conversion
   to MP3 or FLAC is not available. Without Deno, some YouTube formats may not
   be available. The Downloads page says both.
-- **The download queue is not saved yet.** Unfinished downloads are lost if
-  Onsa is closed, and results always go into `Unduhan` in the first library
-  folder. Both are closed in v1.4.1.
 - **Sources that only offer Opus are rejected** with a message, because there
   is no Opus decoder yet. Better to reject up front than to let the file land
   and never show up in the library.
@@ -282,5 +287,4 @@ Written as they are in the README and release notes, not hidden. For v1.4.0:
 - **Linux has only been tried in WSL**, not yet on a real Linux machine.
 - Word-level timing is already read and stored, but not yet drawn word by
   word — the line lights up, not the word.
-- There is no final icon yet, and the project license is deliberately on
-  hold.
+- The project license is deliberately on hold.

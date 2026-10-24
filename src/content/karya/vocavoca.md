@@ -11,7 +11,7 @@ kelompok: dimeja
 jenis: Aplikasi desktop — audio
 urutan: 3
 ringkas: Pembuat voicebank UTAU, turunan OpenUtau. Tujuannya cukup membaca script yang disiapkan aplikasi, lalu voicebank-nya jadi sendiri. Tahap pertama sudah terbukti dengan voicebank dari suaraku sendiri.
-status: Menunggu — Tahap 1 selesai, menunggu rekaman vokal
+status: Menunggu — Tahap 1 selesai, menunggu rekaman ulang vokal · Okt 2026
 keadaan: menunggu
 periode: Oktober 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, verifikasi, dan rekaman suara; implementasi dengan Claude Code

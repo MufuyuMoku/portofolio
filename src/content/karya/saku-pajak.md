@@ -1,11 +1,11 @@
 ---
 # ---------------------------------------------------------------------------
-# Isi halaman ini diambil dari repo github.com/MufuyuMoku/tax pada tag v1.0.0
-# (10 Oktober 2026): README.md, docs/SPEC.md, docs/PROGRESS.md,
-# docs/DECISIONS.md (K-084, K-085), poc/LAPORAN.md, dan corpus/meta.json.
+# Isi halaman ini diambil dari repo github.com/MufuyuMoku/tax pada tag v1.5.1
+# (23 Oktober 2026): docs/SPEC.md, docs/PROGRESS.md (v1.1.0–v1.5.1),
+# docs/DECISIONS.md (K-084–K-101), poc/LAPORAN.md, dan corpus/meta.json.
 # Angka uji coba pipa data PPh berasal dari poc/LAPORAN.md bagian 1, 4, dan 5.
 # Privasi: jangan menyebut nama orang atau kantor tempat penggunanya bekerja.
-# Repo tanpa berkas lisensi: jangan tulis "open source".
+# Repo berlisensi "semua hak dilindungi" (K-093): jangan tulis "open source".
 # ---------------------------------------------------------------------------
 judul: Saku Pajak
 kode: "02"
@@ -13,7 +13,7 @@ kelompok: ditampilkan
 jenis: Situs web — bisa dipasang, jalan tanpa internet
 urutan: 2
 ringkas: Pencari peraturan pajak Indonesia. Situs statis yang bisa dipasang di HP dan dipakai tanpa internet; pencariannya berjalan di perangkat, tanpa server. Bukan situs resmi pemerintah.
-status: v1.0.0 — berjalan, dipakai pengguna nyata
+status: v1.5.1 — berjalan, dipakai pengguna nyata · pembaruan sedang dikerjakan · Okt 2026
 keadaan: aktif
 periode: September 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, dan verifikasi tiap milestone; implementasi dengan Claude Code
@@ -29,16 +29,16 @@ tumpukan:
 
 spek:
   - label: Dokumen
-    nilai: "2.614"
-    catatan: PPh 1.122, KUP 1.112, PPN 992 (satu dokumen bisa masuk lebih dari satu kategori). Dari corpus/meta.json.
+    nilai: "3.068"
+    catatan: PPh 1.124, KUP 1.113, PPN 992, PBB 227, "Lainnya" 193, BPHTB 78, Bea Meterai 59 (satu dokumen bisa masuk lebih dari satu kategori). Dari corpus/meta.json.
   - label: Unit pasal
-    nilai: "15.979"
-    catatan: Batang tubuh yang sudah dipecah per pasal atau diktum, dari 1.602 dokumen yang berteks.
+    nilai: "17.840"
+    catatan: Batang tubuh yang sudah dipecah per pasal atau diktum, dari 1.789 dokumen yang berteks.
   - label: Status tidak pasti
-    nilai: "500"
+    nilai: "560"
     catatan: Sumber-sumbernya saling bertentangan, jadi ditampilkan "tidak pasti" — bukan ditebak.
   - label: Halaman luring identik
-    nilai: "20.966"
+    nilai: "23.707"
     catatan: Halaman yang dibuat di perangkat saat luring dibandingkan byte demi byte dengan halaman terbit.
 
 tautan:
@@ -71,10 +71,9 @@ Jenderal Pajak dan JDIH Kementerian Keuangan, dipecah per pasal. Tiap dokumen
 selalu membawa URL sumber dan tanggal pengambilannya, di data maupun di
 tampilan.
 
-Cakupan v1.0.0: **PPh, KUP, dan PPN**. Kategori lain di katalog DJP — Bea
-Meterai, BPHTB, PBB, dan "Lainnya" — sedang diambil untuk v1.1, bersama
-perintah pembaruan bertahap yang memeriksa peraturan baru atau berubah tanpa
-mengambil ulang semua detail. Hasilnya belum masuk situs.
+Cakupannya tujuh kategori katalog DJP: **PPh, KUP, PPN, PBB, BPHTB, Bea
+Meterai**, dan peraturan "Lainnya" yang memang bertopik pajak — yang terakhir
+diputuskan per peraturan. Empat kategori terakhir masuk di v1.1.0.
 
 Aturan yang tidak boleh dilanggar, apa pun alasannya:
 
@@ -87,6 +86,26 @@ Aturan yang tidak boleh dilanggar, apa pun alasannya:
   teks hasil OCR.
 - **Relasi antarperaturan adalah petunjuk, bukan kebenaran**, jadi selalu
   disertai kutipan kalimat sumbernya.
+
+## Sesudah v1.0.0
+
+- **v1.1.0** (16 Oktober): PBB, BPHTB, Bea Meterai, dan "Lainnya" masuk korpus.
+- **v1.2.0** (16 Oktober): pembaruan otomatis. Setiap hari peraturan yang baru
+  dan berubah diambil dari DJP dan JDIH; setiap minggu datanya diperiksa, dan
+  baru terbit kalau memang berubah dan semua gerbang uji lulus. Masalah yang
+  butuh manusia membuka issue. Di aplikasi ada penanda "terakhir diperiksa"
+  dan halaman peraturan baru dan yang berubah, dan data baru terpasang sendiri
+  saat aplikasi dibuka lagi.
+- **v1.3.0** (17 Oktober): kotak definisi di atas hasil, tombol Simpan dengan
+  halaman Tersimpan, dan sepuluh pencarian terakhir.
+- **v1.4.0** (18 Oktober): data pencarian dipecah, sehingga satu pembaruan
+  kecil turun dari 9,30 MB menjadi 1,56 MB (gzip).
+- **v1.5.0 dan v1.5.1** (23 Oktober): rujukan pasal seperti "PPh 23" atau
+  "PPh 4(2)" dikenali sebagai satu konsep. Dokumen yang menyebut pasal itu
+  secara persis tampil di atas, hasil lain menyusul di bawahnya. Daftar
+  rujukannya mencakup 543 tempat sebuah pasal ditulis, di 20 undang-undang.
+
+Pembaruan berikutnya sedang dikerjakan.
 
 ## Koleksi pribadi
 
@@ -135,10 +154,10 @@ atas.
 
 Untuk pemakaian luring, halaman dokumen dan pasal tidak disimpan satu per
 satu, melainkan dibangun di perangkat dari data — oleh fungsi yang sama yang
-dipakai saat build. Simpanannya di perangkat sekitar 81 MB, dengan unduhan
-pertama sekitar 15 MB.
+dipakai saat build. Simpanannya di perangkat sekitar 92 MB, dengan unduhan
+pertama sekitar 17 MB.
 
-Supaya "sama" bukan sekadar klaim, build membandingkan seluruh 20.966 halaman
+Supaya "sama" bukan sekadar klaim, build membandingkan seluruh 23.707 halaman
 hasil jalur luring dengan halaman terbit, byte demi byte. Uji negatifnya:
 satu halaman diubah, dan perbedaannya langsung tertangkap. Uji di Chrome
 sungguhan mematikan server lalu membuka daftar, pencarian, saringan, dokumen,
@@ -152,3 +171,5 @@ pasal, dan koleksi dalam keadaan luring.
   sungguhan.
 - Surat edaran Dirjen Pajak praktis tidak tersedia di sumber resmi yang bisa
   diambil, jadi tidak ada di data bawaan. Itu sebabnya koleksi pribadi ada.
+- Rujukan pasal belum memisahkan ayat dari pasalnya, dan teks OCR yang rusak
+  tidak dikenali sebagai rujukan.

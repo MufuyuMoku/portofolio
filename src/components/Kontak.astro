@@ -1,0 +1,37 @@
+---
+import situs from '../data/situs.json';
+import { UI } from '../lib/teks';
+import type { Bahasa } from '../lib/bahasa';
+
+// Panel kontak, dipakai di Beranda dan Tentang. WhatsApp sengaja teks saja:
+// hanya username, tanpa nomor telepon, dan tanpa tautan yang belum pasti resmi.
+interface Props { bahasa: Bahasa }
+const t = UI[Astro.props.bahasa];
+---
+
+<div class="panel panel--bl kontak">
+  <dl class="data">
+    <dt>{t.surel}</dt>
+    <dd><a class="tautan" href={`mailto:${situs.email}`}>{situs.email}</a></dd>
+    <dt>GitHub</dt>
+    <dd><a class="tautan" href={situs.githubUrl} rel="me noopener">{situs.github}</a></dd>
+    <dt>WhatsApp</dt>
+    <dd>{situs.whatsapp}</dd>
+  </dl>
+  <p class="kontak__jasa">
+    {t.jasaAjak} <a class="tautan" href={situs.jasaUrl} rel="noopener">{t.jasaTautan}</a>
+  </p>
+</div>
+
+<style>
+  .kontak { max-width: 34rem; }
+  .kontak__jasa {
+    margin: 0.9rem 0 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line-soft);
+    color: var(--fg-dim);
+    font-size: 0.875rem;
+  }
+  .tautan { border-bottom: 1px solid var(--line); transition: border-color 0.18s linear; }
+  .tautan:hover, .tautan:focus-visible { border-bottom-color: var(--accent); }
+</style>

@@ -1,22 +1,22 @@
 ---
 jenis: Website — installable, works offline
 ringkas: A search tool for Indonesian tax regulations. A static site that can be installed on a phone and used without internet; search runs on the device, with no server. Not an official government site.
-status: v1.0.0 — running, used by real users
+status: v1.5.1 — running, used by real users · update in progress · Oct 2026
 periode: September 2026 — ongoing
 peran: Specification, scope decisions, and verification of every milestone; implementation with Claude Code
 platform: Browser — computer and phone (installable as an app)
 spek:
   - label: Documents
-    nilai: "2,614"
-    catatan: Income tax (PPh) 1,122, general provisions (KUP) 1,112, VAT (PPN) 992 (one document can fall into more than one category). From corpus/meta.json.
+    nilai: "3,068"
+    catatan: Income tax (PPh) 1,124, general provisions (KUP) 1,113, VAT (PPN) 992, property tax (PBB) 227, "Other" 193, land and building acquisition duty (BPHTB) 78, stamp duty 59 (one document can fall into more than one category). From corpus/meta.json.
   - label: Article units
-    nilai: "15,979"
-    catatan: Main bodies split by article or clause, from the 1,602 documents that have text.
+    nilai: "17,840"
+    catatan: Main bodies split by article or clause, from the 1,789 documents that have text.
   - label: Uncertain status
-    nilai: "500"
+    nilai: "560"
     catatan: Their sources contradict each other, so they are shown as "uncertain" — not guessed.
   - label: Identical offline pages
-    nilai: "20,966"
+    nilai: "23,707"
     catatan: Pages built on the device while offline, compared byte for byte with the published pages.
 tautanLabel:
   - Site
@@ -47,12 +47,11 @@ the Directorate General of Taxes (DJP) and the legal documentation network
 carries its source URL and the date it was fetched, both in the data and on
 screen.
 
-Coverage in v1.0.0: **income tax (PPh), general provisions and procedures
-(KUP), and VAT (PPN)**. The other categories in the DJP catalog — stamp duty,
-land and building acquisition duty, property tax, and "Other" — are being
-fetched for v1.1, together with an incremental update command that checks for
-new or changed regulations without fetching every detail again. Those results
-are not on the site yet.
+Coverage is seven categories of the DJP catalog: **income tax (PPh),
+general provisions and procedures (KUP), VAT (PPN), property tax (PBB), land
+and building acquisition duty (BPHTB), stamp duty**, and the "Other"
+regulations that are actually about tax — the last decided regulation by
+regulation. The last four categories came in with v1.1.0.
 
 Rules that must not be broken, whatever the reason:
 
@@ -65,6 +64,27 @@ Rules that must not be broken, whatever the reason:
 - **Scanned attachments are shown as the original PDF**, never as OCR text.
 - **Links between regulations are hints, not truth**, so they always come
   with a quote of the source sentence.
+
+## After v1.0.0
+
+- **v1.1.0** (16 October): property tax, land and building acquisition duty,
+  stamp duty, and "Other" join the corpus.
+- **v1.2.0** (16 October): automatic updates. Every day, new and changed
+  regulations are fetched from DJP and JDIH; every week the data is checked,
+  and it is only published if it actually changed and every test gate passes.
+  Problems that need a human open an issue. The app shows when the data was
+  last checked and has a page of new and changed regulations, and new data
+  installs itself when the app is opened again.
+- **v1.3.0** (17 October): a definition box above the results, a Save button
+  with a Saved page, and the last ten searches.
+- **v1.4.0** (18 October): the search data is split up, so a small update
+  drops from 9.30 MB to 1.56 MB (gzip).
+- **v1.5.0 and v1.5.1** (23 October): article references such as "PPh 23" or
+  "PPh 4(2)" are understood as one concept. Documents that cite that article
+  exactly come first, and other results follow below. The reference list
+  covers 543 places where an article is written, across 20 laws.
+
+The next update is in progress.
 
 ## Personal collection
 
@@ -114,10 +134,10 @@ above.
 
 For offline use, document and article pages are not stored one by one; they
 are built on the device from the data — by the same function used at build
-time. The on-device storage is about 81 MB, with a first download of about
-15 MB.
+time. The on-device storage is about 92 MB, with a first download of about
+17 MB.
 
-So that "the same" is not just a claim, the build compares all 20,966 pages
+So that "the same" is not just a claim, the build compares all 23,707 pages
 produced by the offline path with the published pages, byte for byte. The
 negative test: one page is changed, and the difference is caught right away.
 A test in a real Chrome turns the server off and then opens the list, search,
@@ -132,3 +152,5 @@ filters, documents, articles, and collection while offline.
 - Circulars from the Director General of Taxes are practically unavailable
   from official sources that can be fetched, so they are not in the built-in
   data. That is why the personal collection exists.
+- Article references do not yet separate a paragraph from its article, and
+  OCR-damaged text is not recognized as a reference.
