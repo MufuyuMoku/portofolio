@@ -1,7 +1,7 @@
 ---
 jenis: Desktop app — audio
 ringkas: A UTAU voicebank maker built on OpenUtau. The goal is that you just read the script the app prepares, and the voicebank builds itself. The first stage has already been proven with a voicebank made from my own voice.
-status: Waiting — Stage 1 done, waiting on a vocal re-recording · Oct 2026
+status: Waiting — CVVC and auto tuning built, waiting on a vocal re-recording · Oct 2026
 periode: October 2026 — ongoing
 peran: Specification, scope decisions, verification, and voice recording; implementation with Claude Code
 platform: Desktop — Windows x64 (test package)
@@ -80,17 +80,35 @@ release is below −60 dB. Plosive consonants on connected notes are still not
 crisp enough. The stable OpenUtau 0.1.565 release cannot open the project
 file yet, although the voicebank itself still works there.
 
-## Next
+## CVVC and Stage 2: built, waiting on a re-recording
 
-CVVC and Stage 2 (auto tuning), worked on together:
+Both were built together on 10–11 October 2026.
 
 - **CVVC transition samples.** A CV voicebank only has "consonant from
-  silence" samples. A natural vowel-to-consonant transition on connected
-  notes can only come from samples that actually record that transition — and
-  this is required for an English pack.
-- **Stage 2: auto tuning.** A voicebank from Stage 1 sings from notes drawn
-  in the piano roll, and auto tuning gives a first pitch line that can still
-  be adjusted by hand.
+  silence" samples, so stop consonants on connected notes are not sharp
+  enough — and transitions like these are required for an English pack. The
+  CVVC reclist adds 19 lines sung connected. The recorder can reuse the CV
+  takes from an earlier session, and auto-oto finds the vowel-to-consonant
+  (VC) and vowel-to-vowel (VV) transition boundaries on its own.
+- **Test voicebank MyuCVVC**, recorded on 11 October: 223 samples (101 CV and
+  122 transitions), with silence noise of −54 to −58 dB (Myu was −42 to
+  −49 dB). Measured from the rendered output, k/t/p stops became sharper
+  (+3.1 dB).
+- **A problem caught by ear.** The consonants were clearer, but the voice
+  sounded less stable. The cause was then measured: in the vowel-to-vowel
+  lines, each vowel was re-attacked instead of glided, so the transition
+  samples held a gap and joins into vowel notes dropped almost to silence.
+  Auto-oto now measures that gap and leaves out doubtful transitions. After
+  that, 56 transitions are used, the sharper stops remain, and the breaks are
+  gone. The vowel-to-vowel lines still need to be re-recorded with the vowels
+  glided without stopping — that is what the project is waiting on.
+- **Stage 2: rule-based auto tuning**, with no AI model. From the drawn
+  notes, it fills in the piano roll's own pitch points and vibrato: glides
+  between notes, a slight overshoot after a leap, vibrato on long notes, and
+  the start and end of phrases. Everything can still be moved by hand, and a
+  single Ctrl+Z undoes all of it. Measured from the rendered audio, the pitch
+  line really reaches the voice; its strength was then halved. Whether it
+  sounds natural is still being judged by ear.
 
 The order after that is already written, with no time estimates: voice
 profile variations, a text door (type a sentence and the voicebank speaks

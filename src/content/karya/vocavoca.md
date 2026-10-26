@@ -1,8 +1,9 @@
 ---
 # ---------------------------------------------------------------------------
-# Isi halaman ini diambil dari repo MufuyuMoku/vocavoca (privat) per 10 Oktober
+# Isi halaman ini diambil dari repo MufuyuMoku/vocavoca (privat) per 11 Oktober
 # 2026: LICENSE.txt, CLAUDE.md, dan docs/rancangan/ (01-visi, 04-urutan-
-# pengerjaan, 05-keputusan, 06-pertanyaan-terbuka). Repo privat, jadi tidak
+# pengerjaan, 05-keputusan, 06-pertanyaan-terbuka, 11-cvvc, 12-auto-tuning,
+# 13-besok). Jangan menyalin path lokal atau nama perangkat ke halaman ini. Repo privat, jadi tidak
 # ada tautan repositori. Atribusi OpenUtau wajib tetap ada.
 # ---------------------------------------------------------------------------
 judul: VocaVoca
@@ -11,7 +12,7 @@ kelompok: dimeja
 jenis: Aplikasi desktop — audio
 urutan: 3
 ringkas: Pembuat voicebank UTAU, turunan OpenUtau. Tujuannya cukup membaca script yang disiapkan aplikasi, lalu voicebank-nya jadi sendiri. Tahap pertama sudah terbukti dengan voicebank dari suaraku sendiri.
-status: Menunggu — Tahap 1 selesai, menunggu rekaman ulang vokal · Okt 2026
+status: Menunggu — CVVC dan auto tuning dibangun, menunggu rekaman ulang vokal · Okt 2026
 keadaan: menunggu
 periode: Oktober 2026 — berjalan
 peran: Spesifikasi, keputusan lingkup, verifikasi, dan rekaman suara; implementasi dengan Claude Code
@@ -101,17 +102,35 @@ Konsonan letup saat not bersambung masih kurang tajam. Rilis stabil OpenUtau
 0.1.565 belum bisa membuka berkas proyeknya, walau voicebank-nya tetap bisa
 dipakai di sana.
 
-## Berikutnya
+## CVVC dan Tahap 2: dibangun, menunggu rekaman ulang
 
-CVVC dan Tahap 2 (auto tuning), dikerjakan bersamaan:
+Keduanya dibangun bersamaan pada 10–11 Oktober 2026.
 
 - **Sampel peralihan CVVC.** Voicebank CV hanya punya sampel "konsonan dari
-  diam". Peralihan vokal ke konsonan yang alami saat not bersambung hanya bisa
-  didapat dari sampel yang memang merekam peralihan itu — dan ini wajib untuk
-  paket bahasa Inggris.
-- **Tahap 2: auto tuning.** Voicebank dari Tahap 1 bernyanyi dari not yang
-  digambar di piano roll, dan auto tuning memberi garis nada awal yang tetap
-  bisa diatur tangan.
+  diam", jadi konsonan letup saat not bersambung kurang tajam — dan peralihan
+  seperti ini wajib untuk paket bahasa Inggris. Reclist CVVC menambah 19 baris
+  yang dinyanyikan bersambung. Perekam bisa memakai ulang rekaman CV dari sesi
+  sebelumnya, dan auto-oto mencari sendiri batas peralihan vokal ke konsonan
+  (VC) dan vokal ke vokal (VV).
+- **Voicebank uji MyuCVVC**, direkam 11 Oktober: 223 sampel (101 CV dan 122
+  peralihan), dengan bising saat diam −54 sampai −58 dB (Myu dulu −42 sampai
+  −49 dB). Diukur dari hasil render, letupan k/t/p jadi lebih tajam
+  (+3,1 dB).
+- **Masalah yang ketahuan dari telinga.** Konsonannya lebih jelas, tapi
+  suaranya terdengar kurang stabil. Penyebabnya lalu diukur: di baris vokal ke
+  vokal, tiap vokal diucap ulang dengan hentakan, sehingga sampel peralihannya
+  menyimpan jeda dan sambungan ke not vokal turun hampir ke hening. Auto-oto
+  kini mengukur jeda itu dan tidak memakai peralihan yang ragu. Sesudahnya 56
+  peralihan dipakai, ketajaman letupan tetap, dan patahannya hilang. Baris
+  vokal ke vokal tetap perlu direkam ulang dengan vokal yang diluncurkan tanpa
+  berhenti — itu yang sedang ditunggu.
+- **Tahap 2: auto tuning berbasis aturan**, tanpa model AI. Dari not yang
+  digambar, ia mengisi titik pitch dan vibrato bawaan piano roll: luncuran
+  antarnot, sedikit lewat sesudah lompatan, vibrato di not panjang, serta awal
+  dan akhir frasa. Semuanya tetap bisa digeser tangan, dan satu Ctrl+Z
+  membatalkan seluruhnya. Diukur dari audio hasil render, garis nadanya
+  benar-benar sampai ke suara; kekuatannya lalu diturunkan setengahnya.
+  Apakah hasilnya terdengar alami masih dinilai dengan telinga.
 
 Urutan sesudahnya sudah ditulis, tanpa estimasi waktu: variasi profil suara,
 pintu teks (mengetik kalimat lalu voicebank berbicara), pintu cover, dan
