@@ -7,10 +7,10 @@
 # 18 Oktober 2026: rencana Landship/VTLS dilebur ke HOME dan Nor-4 (keputusan Fata).
 # ---------------------------------------------------------------------------
 judul: Project Nor-4
-kode: "06"
+kode: "08"
 kelompok: dimeja
 jenis: Rancangan — eksperimen AI lokal
-urutan: 6
+urutan: 8
 ringkas: Eksperimen AI VTuber yang sepenuhnya berjalan lokal di laptop, tanpa layanan AI dari luar. Suaranya nanti berasal dari voicebank VocaVoca.
 status: Istirahat — masih rancangan
 keadaan: istirahat

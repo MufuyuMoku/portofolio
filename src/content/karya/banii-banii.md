@@ -6,10 +6,10 @@
 # Kolom `peran` diisi nama pena sesuai keputusan Fata (18 Okt 2026).
 # ---------------------------------------------------------------------------
 judul: Banii Banii
-kode: "10"
+kode: "13"
 kelompok: tulisan
 jenis: Lirik lagu — bahasa Jepang · バニー・バニー
-urutan: 10
+urutan: 13
 ringkas: Lirik lagu berbahasa Jepang untuk Hatsune Miku. Terdengar imut di permukaan, tetapi isinya satir yang tajam dan blak-blakan. Kelinci jadi metafora utamanya.
 status: Lirik selesai
 keadaan: selesai

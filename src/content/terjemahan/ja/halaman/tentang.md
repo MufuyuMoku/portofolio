@@ -30,4 +30,4 @@ Saku Pajak の
 
 ## 道具
 
-デスクトップアプリには Rust と Tauri 2（Onsa と KyuSin）。CIT（Wails と併用）と実習先の生産管理システムには Go。画面には SvelteKit と TypeScript。静的サイトには Astro（Saku Pajak とこのサイト）、Saku Pajak のデータパイプラインには Python。VocaVoca では OpenUtau に合わせて C#、.NET、Avalonia。家のサーバーには Armbian、Docker、systemd。ローカル保存には SQLite。そしてすべてに Git。
+デスクトップアプリには Rust と Tauri 2（Onsa、KyuSin、SS Lighthouse）。CIT（Wails と併用）と実習先の生産管理システムには Go。画面には SvelteKit と TypeScript。静的サイトには Astro（Saku Pajak とこのサイト）、Saku Pajak のデータパイプラインには Python。VocaVoca では OpenUtau に合わせて C#、.NET、Avalonia。家のサーバーには Armbian、Docker、systemd。ローカル保存には SQLite、オンラインショップ Dunia Kopi には PostgreSQL。そしてすべてに Git。

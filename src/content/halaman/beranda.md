@@ -13,7 +13,8 @@ yang sudah *jadi*.
 
 Yang aku bangun sekarang lebih dari aplikasi desktop: pemutar musik,
 pencari peraturan pajak yang jalan tanpa internet, pembuat voicebank,
-kumpulan game, dan server kecil di STB bekas. Di luar kode, aku juga menulis:
+kumpulan game, toko online kopi, aplikasi ruang istirahat bertema
+mercusuar, dan server kecil di STB bekas. Di luar kode, aku juga menulis:
 naskah desain game, novel, cerpen, dan lirik lagu.
 
 Di bawah ini semuanya dikelompokkan menurut keadaannya: yang sudah bisa

@@ -52,9 +52,10 @@ up, and what exposed them.
 
 ## Tools
 
-Rust and Tauri 2 for desktop apps — Onsa and KyuSin. Go for CIT (with Wails)
+Rust and Tauri 2 for desktop apps — Onsa, KyuSin, and SS Lighthouse. Go for CIT (with Wails)
 and for the production system during my internship. SvelteKit and
 TypeScript for interfaces. Astro for static sites — Saku Pajak and this site
 — with Python for the Saku Pajak data pipeline. C# and .NET with Avalonia in
 VocaVoca, following OpenUtau. Armbian, Docker, and systemd for the home
-server. SQLite for local storage. Git for everything.
+server. SQLite for local storage, and PostgreSQL for the Dunia Kopi online shop.
+Git for everything.

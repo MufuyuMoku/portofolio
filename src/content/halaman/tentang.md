@@ -49,9 +49,10 @@ ketahuan, dan apa yang membuatnya ketahuan.
 
 ## Alat
 
-Rust dan Tauri 2 untuk aplikasi desktop — Onsa dan KyuSin. Go untuk CIT
+Rust dan Tauri 2 untuk aplikasi desktop — Onsa, KyuSin, dan SS Lighthouse. Go untuk CIT
 (dengan Wails) dan untuk sistem produksi saat PKL. SvelteKit dan TypeScript
 untuk antarmuka. Astro untuk situs statis — Saku Pajak dan situs ini — dengan
 Python untuk pipa data Saku Pajak. C# dan .NET dengan Avalonia di VocaVoca,
 mengikuti OpenUtau. Armbian, Docker, dan systemd untuk server rumahan. SQLite
-untuk penyimpanan lokal. Git untuk semuanya.
+untuk penyimpanan lokal, dan PostgreSQL untuk toko online Dunia Kopi. Git
+untuk semuanya.

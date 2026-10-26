@@ -9,10 +9,10 @@
 # 18 Oktober 2026: rencana Landship/VTLS dilebur ke HOME dan Nor-4 (keputusan Fata).
 # ---------------------------------------------------------------------------
 judul: Project HOME
-kode: "05"
+kode: "07"
 kelompok: dimeja
 jenis: Server rumahan — homelab
-urutan: 5
+urutan: 7
 ringkas: High Operative Management Environment — server mini pribadi di STB bekas berprosesor ARM. Empat layanan berjalan di Docker, backup harian terenkripsi sudah lulus uji pemulihan, dan semuanya bisa dibangun ulang dari isi repo.
 status: Istirahat — Fase 0 dan 1 selesai
 keadaan: istirahat

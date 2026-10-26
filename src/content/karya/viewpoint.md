@@ -5,12 +5,12 @@
 # Kolom `peran` diisi nama pena sesuai keputusan Fata (18 Okt 2026).
 # ---------------------------------------------------------------------------
 judul: Viewpoint
-kode: "08"
+kode: "11"
 kelompok: tulisan
 jenis: Novel — romansa
-urutan: 8
+urutan: 11
 ringkas: Novel romansa tentang seorang mahasiswi film yang membuat film tugas akhir berjudul "Viewpoint", dan seorang mahasiswa akting yang tak sengaja masuk frame lalu menjadi satu-satunya pemerannya.
-status: Naskah selesai
+status: Selesai · Okt 2026
 keadaan: selesai
 peran: Mufuyu Moku
 periode: Oktober 2026

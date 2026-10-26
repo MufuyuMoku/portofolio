@@ -9,9 +9,10 @@ counts as done is behavior that passes its tests, not a screen that looks
 *finished*.
 
 What I build now goes beyond desktop apps: a music player, a tax regulation
-search that works offline, a voicebank maker, a collection of games, and a
-small server on a second-hand TV set-top box. Outside code, I also write:
-game design documents, a novel, a short story, and song lyrics.
+search that works offline, a voicebank maker, a collection of games, an
+online coffee shop, a lighthouse-themed resting app, and a small server on a
+second-hand TV set-top box. Outside code, I also write: game design
+documents, novels, a short story, and song lyrics.
 
 Below, everything is grouped by its state: what you can try now, what is
 still on the table (in progress, waiting on something, or resting for now),

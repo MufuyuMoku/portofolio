@@ -1,7 +1,7 @@
 ---
 jenis: Novel — romance
 ringkas: A romance novel about a film student making her final project, a film called "Viewpoint", and an acting student who wanders into her frame by accident and becomes its only cast member.
-status: Manuscript done
+status: Done · Oct 2026
 periode: October 2026
 platform: Novel manuscript, about 27,500 words — in Indonesian
 spek:

@@ -5,10 +5,10 @@
 # Kolom `peran` diisi nama pena sesuai keputusan Fata (18 Okt 2026).
 # ---------------------------------------------------------------------------
 judul: Langit Ini Warnanya Apa
-kode: "09"
+kode: "12"
 kelompok: tulisan
 jenis: Cerpen
-urutan: 9
+urutan: 12
 ringkas: Cerpen tentang seorang pemimpi dan sebuah program penyanyi yang ingin membuat lagu bersama. Si pemimpi sudah terlalu lelah, dan pada akhirnya lagu itu dinyanyikan si program sendirian.
 status: Selesai — untuk antologi cerpen kelas XII
 keadaan: selesai

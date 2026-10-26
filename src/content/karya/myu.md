@@ -5,10 +5,10 @@
 # Kolom `peran` diisi nama pena sesuai keputusan Fata (18 Okt 2026).
 # ---------------------------------------------------------------------------
 judul: MYU
-kode: "07"
+kode: "10"
 kelompok: tulisan
 jenis: Game design document — lomba GACCI 2026
-urutan: 7
+urutan: 10
 ringkas: Naskah game design document untuk lomba GACCI 2026 dari BINUS. Action-RPG psikologis yang menggabungkan kehidupan sekolah 2D dengan dunia surealis 3D bernama Elsewhere, dan materi pelajaran menjadi senjata lewat sistem Concept.
 status: Selesai — dikumpulkan 19 Agustus 2026
 keadaan: selesai
